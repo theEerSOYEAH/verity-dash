@@ -3,8 +3,6 @@ extends CharacterBody2D
 const COYOTE_TIME = 0.12
 var coyote_timer = 0.0
 
-var attempts = 0
-
 #ball mode
 const SPEED = 300.0
 const JUMP_VELOCITY = -600
