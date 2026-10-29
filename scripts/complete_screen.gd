@@ -32,6 +32,8 @@ func show_complete(attempts):
 	buttons.modulate.a = 0
 	title.pivot_offset = title.size / 2
 	title.scale = Vector2(0.2, 0.2)
+	ribbon.pivot_offset = ribbon.size / 2
+	ribbon.scale = Vector2(0.2, 0.2)
 	
 	var screen_size = get_viewport().get_visible_rect().size
 	confetti.position = Vector2(screen_size.x / 2, screen_size.y)
@@ -62,11 +64,14 @@ func play_animation():
 	tween.tween_property(buttons, "modulate:a", 1.0, 0.3)
 
 func _on_retry_pressed():
+	Engine.time_scale = 1.0
+	GameManager.attempts += 1
 	get_tree().paused = false
 	get_tree().reload_current_scene()
-	
+
 func _on_menu_pressed():
+	Engine.time_scale = 1.0
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://main_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/main.tscn")
 	
 	
