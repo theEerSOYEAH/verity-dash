@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://b2f2fmaq3pt4n"]
+
+[ext_resource type="Script" uid="uid://ii0m2djkmoff" path="res://scripts/verity.gd" id="1_6kb7q"]
+[ext_resource type="Texture2D" uid="uid://cacbaeodqf3h2" path="res://assets/verity-removebg-preview.png" id="2_05v41"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hlnv"]
+atlas = ExtResource("2_05v41")
+region = Rect2(0, 0, 487, 512)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h621j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hlnv")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h621j"]
+radius = 15.132746
+
+[node name="verity" type="CharacterBody2D" unique_id=1912265165]
+script = ExtResource("1_6kb7q")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=616135608]
+position = Vector2(7.1054274e-15, 1)
+scale = Vector2(0.11550309, 0.115503095)
+sprite_frames = SubResource("SpriteFrames_h621j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=133025736]
+shape = SubResource("CircleShape2D_h621j")
