@@ -32,21 +32,25 @@ func _process(delta: float) -> void:
 	
 	if percent < 0:
 		percent = 0
+	if percent > 100:
+		percent = 100
+	if player.finishe == true:
+		percent = 100
+	
+	progress_bar.value = percent
+	percent_label.text = str(int(percent)) + "%"
+	
 	if percent > GameManager.best_percent:
 		GameManager.best_percent = percent
 		best_label.text = "Best: " + str(int(GameManager.best_percent)) + "%"
 	
-	progress_bar.value = percent
-	
-	percent_label.text = str(int(percent)) + "%"
-	
 	if percent >= 100:
 		level_finished = true
-		$CompleteScreen.show_complete(GameManager.attempts)
-		print("verity co,mpleyted the level")
-
-func reset_progress():
-	percent = 0
-	progress_bar.value = 0
-	percent_label.text = "0%"
-	level_finished = false
+		show_finish()
+	
+	
+	
+	
+func show_finish():
+	await get_tree().create_timer(1.5, true, false, true).timeout
+	$CompleteScreen.show_complete(GameManager.attempts)
