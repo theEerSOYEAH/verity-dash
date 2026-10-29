@@ -43,3 +43,10 @@ func _process(delta: float) -> void:
 	
 	global_position = c
 	
+
+func shake(strength, duration):
+	var tween = create_tween()
+	for i in 10:
+		var shake_offset = Vector2(randf_range(-strength, strength), randf_range(-strength, strength))
+		tween.tween_property(self, "offset", shake_offset, duration / 10)
+	tween.tween_property(self, "offset", Vector2.ZERO, 0.05)
