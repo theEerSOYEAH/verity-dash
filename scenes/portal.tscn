@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://bpfhumupkfvlq"]
-
-[node name="portal" type="Area2D" unique_id=303545976]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1522886360]
