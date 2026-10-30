@@ -1,12 +1,17 @@
 extends CharacterBody2D
 
+const T = 250
+
+
+const JUMP_BUFFER_TIME = 0.12
+var jump_buffer_timer = 0.0
 const COYOTE_TIME = 0.12
 var coyote_timer = 0.0
 
 var attempts = 0
 
 #ball mode
-const SPEED = 300.0
+const SPEED = 275.0
 const JUMP_VELOCITY = -600
 const GRAVITY = 2000
 const ROLL_SPEED = 8.0
@@ -16,7 +21,10 @@ const SHIP_THRUST = -1800
 const SHIP_GRAVITY = 1400
 const SHIP_MAX_RISE = -450
 const SHIP_MAX_FALL = 450
-enum Mode { ROLL, SHIP}
+
+const WAVE_Y_MULT = 1.25
+
+enum Mode { ROLL, SHIP, WAVE }
 var mode : Mode = Mode.ROLL
 
 
@@ -35,10 +43,19 @@ func _physics_process(delta: float) -> void:
 			_roll_physics(delta)
 		Mode.SHIP:
 			_ship_physics(delta)
+		Mode.WAVE:
+			_wave_physics()
 	
 	
 	velocity.x = SPEED
 	move_and_slide()
+	
+	for i in get_slide_collision_count():
+		var hit = get_slide_collision(i)
+		if abs(hit.get_normal().x) > 0.9:
+			die()
+			return
+	
 
 func _roll_physics(delta: float):
 	if not is_on_floor():
@@ -49,15 +66,25 @@ func _roll_physics(delta: float):
 	
 	sprite.rotation += ROLL_SPEED * delta
 	
-	if coyote_timer > 0.0 and Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("ui_accept"):
+		jump_buffer_timer = JUMP_BUFFER_TIME
+	else:
+		jump_buffer_timer -= delta
+	
+	var wants_jump = jump_buffer_timer > 0.0 or Input.is_action_pressed("ui_accept")
+	if coyote_timer > 0.0 and wants_jump:
 		velocity.y = JUMP_VELOCITY
 		coyote_timer = 0.0
+		jump_buffer_timer = 0.0 
+	
+	
+	
 
 func _ship_physics(delta : float):
 	if Input.is_action_pressed("ui_accept"):
 		velocity.y += SHIP_THRUST * delta
 	else:
-		velocity.y = clamp(velocity.y, SHIP_MAX_RISE, SHIP_MAX_FALL)
+		velocity.y += SHIP_GRAVITY * delta
 		
 		velocity.y = clamp(velocity.y, SHIP_MAX_RISE, SHIP_MAX_FALL)
 		
@@ -65,8 +92,16 @@ func _ship_physics(delta : float):
 		sprite.rotation = lerp_angle(sprite.rotation, target_angle, 10.0 * delta)
 		
 
+func _wave_physics():
+	var dir = -1.0 if Input.is_action_pressed("ui_accept") else 1.0
+	velocity.y = dir * SPEED * WAVE_Y_MULT
+	
+	sprite.rotation = atan2(velocity.y, SPEED)
+
+
+
 func set_mode(new_mode :int):
-	mode = new_mode
+	mode = new_mode as Mode
 	velocity.y = 0.0
 	if mode == Mode.ROLL:
 		sprite.rotation = 0.0
