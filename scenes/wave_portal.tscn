@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cb2nog1pd1qej"]
+
+[ext_resource type="Script" uid="uid://t1abb5vq2ji1" path="res://scripts/portal.gd" id="1_yyixf"]
+[ext_resource type="Texture2D" uid="uid://ttkomvhvewte" path="res://icon.svg" id="2_h75lh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_442f8"]
+size = Vector2(51.5, 86)
+
+[node name="wave portal" type="Area2D" unique_id=1986563813]
+collision_layer = 2
+script = ExtResource("1_yyixf")
+target_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=294430910]
+position = Vector2(24.5, -47)
+scale = Vector2(0.3984375, 0.671875)
+texture = ExtResource("2_h75lh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1886129735]
+position = Vector2(24.25, -47)
+shape = SubResource("RectangleShape2D_442f8")

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://vftyuca7frrt"]
+
+[ext_resource type="Script" uid="uid://t1abb5vq2ji1" path="res://scripts/portal.gd" id="1_u8d7i"]
+[ext_resource type="Texture2D" uid="uid://ttkomvhvewte" path="res://icon.svg" id="2_w38e2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dkcjv"]
+size = Vector2(51.5, 86)
+
+[node name="roll portal" type="Area2D" unique_id=507980086]
+script = ExtResource("1_u8d7i")
+target_mode = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=584121929]
+position = Vector2(24.5, -47)
+scale = Vector2(0.3984375, 0.671875)
+texture = ExtResource("2_w38e2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1234937251]
+position = Vector2(24.25, -47)
+shape = SubResource("RectangleShape2D_dkcjv")
