@@ -11,6 +11,11 @@
 [ext_resource type="PackedScene" uid="uid://vftyuca7frrt" path="res://scenes/roll_portal.tscn" id="10_choun"]
 [ext_resource type="PackedScene" uid="uid://c624xv3dctp8e" path="res://scenes/block.tscn" id="11_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://cb2nog1pd1qej" path="res://scenes/wave_portal.tscn" id="12_eb6dy"]
+[ext_resource type="Script" uid="uid://b41g6ohts0sxy" path="res://scenes/Progress.gd" id="9_85g3d"]
+[ext_resource type="PackedScene" uid="uid://cmfupf6ht7voe" path="res://scenes/complete_screen.tscn" id="10_eb6dy"]
+[ext_resource type="Texture2D" uid="uid://bh8tikenhhes2" path="res://assets/healthbarUnder.png" id="10_ya4ey"]
+[ext_resource type="FontFile" uid="uid://tphvo0i11qn0" path="res://assets/LilitaOne-Regular.ttf" id="11_ya4ey"]
+[ext_resource type="Script" uid="uid://7a6rshexbv4r" path="res://scripts/finish_line.gd" id="13_trceg"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_h621j"]
 distance = -68.0
@@ -18,9 +23,15 @@ distance = -68.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h621j"]
 size = Vector2(44, 931)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_choun"]
+load_path = "res://.godot/imported/healthbarProgress.png-d5c83ac6e069b837ee7269ac1313db37.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e6q6n"]
+size = Vector2(16, 1453)
+
 [node name="main" type="Node2D" unique_id=1218624401]
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1562832897]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1562832897 groups=["camera"]]
 position = Vector2(-276, -66)
 scale = Vector2(0.6421569, 0.98019564)
 script = ExtResource("1_0wfyh")
@@ -31,6 +42,7 @@ margin_x = 400.0
 [node name="verity" parent="." unique_id=1912265165 instance=ExtResource("1_o5qli")]
 position = Vector2(-790, -66)
 scale = Vector2(1.655458, 1.655458)
+position = Vector2(-790.27, -66)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=806101187]
 
@@ -185,5 +197,67 @@ position = Vector2(385, 1)
 
 [node name="block36" parent="." unique_id=225456579 instance=ExtResource("11_ya4ey")]
 position = Vector2(336, 1)
+[node name="Progress" type="CanvasLayer" parent="." unique_id=1544467001 node_paths=PackedStringArray("player")]
+visible = false
+script = ExtResource("9_85g3d")
+player = NodePath("../verity")
+level_start_x = -790.27
+level_end_x = 1000.0
+
+[node name="CompleteScreen" parent="Progress" unique_id=642362803 instance=ExtResource("10_eb6dy")]
+visible = false
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Progress" unique_id=1458240267]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -176.0
+offset_right = -112.0
+offset_bottom = 10.0
+grow_horizontal = 2
+scale = Vector2(5, 5)
+texture_under = ExtResource("10_ya4ey")
+texture_progress = SubResource("CompressedTexture2D_choun")
+
+[node name="PercentLabel" type="Label" parent="Progress" unique_id=1740686478]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -33.0
+offset_top = 47.0
+offset_right = 7.0
+offset_bottom = 85.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("11_ya4ey")
+theme_override_font_sizes/font_size = 26
+
+[node name="BestLabel" type="Label" parent="Progress" unique_id=1370812945]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 50.0
+offset_right = 20.0
+offset_bottom = 73.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("11_ya4ey")
+theme_override_font_sizes/font_size = 26
+
+[node name="FinishLine" type="Area2D" parent="." unique_id=407631859]
+script = ExtResource("13_trceg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FinishLine" unique_id=855944341]
+position = Vector2(1026, -267)
+shape = SubResource("RectangleShape2D_e6q6n")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="FinishLine" unique_id=410461163]
+emitting = false
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="FinishLine" unique_id=418441511]
 
 [connection signal="body_entered" from="followzone" to="followzone" method="_on_body_entered"]
+[connection signal="body_entered" from="FinishLine" to="FinishLine" method="_on_body_entered"]

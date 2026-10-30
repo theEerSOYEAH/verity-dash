@@ -8,8 +8,6 @@ var jump_buffer_timer = 0.0
 const COYOTE_TIME = 0.12
 var coyote_timer = 0.0
 
-var attempts = 0
-
 #ball mode
 const SPEED = 275.0
 const JUMP_VELOCITY = -600
@@ -31,11 +29,11 @@ var mode : Mode = Mode.ROLL
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var dead := false
-
+var finishe = false
 
 
 func _physics_process(delta: float) -> void:
-	if dead:
+	if dead or finishe:
 		return
 	
 	match mode:
@@ -106,11 +104,21 @@ func set_mode(new_mode :int):
 	if mode == Mode.ROLL:
 		sprite.rotation = 0.0
 
-
-
-
 func die():
 	GameManager.attempts += 1
 	
 	dead = true
 	get_tree().reload_current_scene()
+
+func finish_level():
+	finishe = true
+	velocity = Vector2.ZERO
+	
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(self, "position:y", position.y - 300, 1.0) \
+		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "scale", Vector2(0.1, 0.1), 1.0)
+	tween.tween_property(sprite, "rotation", sprite.rotation + 12.0, 1.0)
+	tween.tween_property(sprite, "modulate:a", 0.0, 1.0)
+	
