@@ -22,6 +22,7 @@ animations = [{
 radius = 15.132746
 
 [node name="verity" type="CharacterBody2D" unique_id=1912265165]
+scale = Vector2(1.655, 1.655)
 script = ExtResource("1_6kb7q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=616135608]
