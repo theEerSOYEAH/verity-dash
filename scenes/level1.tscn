@@ -1,0 +1,522 @@
+[gd_scene format=3 uid="uid://bcolg4k5j8jvo"]
+
+[ext_resource type="Script" uid="uid://bj0e1wpmtol0" path="res://scenes/camera_2d.gd" id="1_2ku1j"]
+[ext_resource type="PackedScene" uid="uid://b2f2fmaq3pt4n" path="res://scenes/verity.tscn" id="2_f31uk"]
+[ext_resource type="Script" uid="uid://dnb1arrh01mma" path="res://scenes/followzone.gd" id="4_i8kv5"]
+[ext_resource type="AudioStream" uid="uid://dj2wo7pftnwlo" path="res://assets/[KARAOKE] Its me, Its Verity - Horror Skunx (official song).mp3" id="5_ru4tf"]
+[ext_resource type="PackedScene" uid="uid://bmegmr75g4xv3" path="res://scenes/spike.tscn" id="6_6sh32"]
+[ext_resource type="Script" uid="uid://d3ih3ycbxnn8a" path="res://scenes/attempt_counter.gd" id="6_14jow"]
+[ext_resource type="PackedScene" uid="uid://c624xv3dctp8e" path="res://scenes/block.tscn" id="7_ejswk"]
+[ext_resource type="PackedScene" uid="uid://crcsj4thgs7wp" path="res://scenes/jumppad.tscn" id="8_bbk5w"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_h621j"]
+distance = -68.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h621j"]
+size = Vector2(44, 931)
+
+[node name="main" type="Node2D" unique_id=1218624401]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1562832897]
+position = Vector2(-276, -66)
+scale = Vector2(0.6421569, 0.98019564)
+script = ExtResource("1_2ku1j")
+player_path = NodePath("../verity")
+player_offset_x = 0.0
+
+[node name="verity" parent="." unique_id=1912265165 instance=ExtResource("2_f31uk")]
+position = Vector2(-790, -66)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="verity" unique_id=1364961920]
+position = Vector2(0.6042156, 0)
+scale = Vector2(0.6042296, 0.6042296)
+stream = ExtResource("5_ru4tf")
+autoplay = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=806101187]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=260444668]
+position = Vector2(112, -67)
+shape = SubResource("WorldBoundaryShape2D_h621j")
+
+[node name="followzone" type="Area2D" parent="." unique_id=1420533061]
+position = Vector2(-3, -5)
+script = ExtResource("4_i8kv5")
+camera_path = NodePath("../Camera2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="followzone" unique_id=670776462]
+position = Vector2(-250, -321)
+shape = SubResource("RectangleShape2D_h621j")
+
+[node name="attempt counter" type="Label" parent="." unique_id=330295039]
+offset_left = -704.0
+offset_top = -159.0
+offset_right = -456.0
+offset_bottom = -136.0
+text = "attempt mumba 0"
+script = ExtResource("6_14jow")
+
+[node name="TheMapItSelf" type="Node2D" parent="." unique_id=1911875410]
+
+[node name="spike" parent="TheMapItSelf" unique_id=530794688 instance=ExtResource("6_6sh32")]
+position = Vector2(-171, 5)
+
+[node name="spike2" parent="TheMapItSelf" unique_id=1977350958 instance=ExtResource("6_6sh32")]
+position = Vector2(243.99997, 5)
+
+[node name="spike3" parent="TheMapItSelf" unique_id=1525590898 instance=ExtResource("6_6sh32")]
+position = Vector2(657, 5)
+
+[node name="spike4" parent="TheMapItSelf" unique_id=665302105 instance=ExtResource("6_6sh32")]
+position = Vector2(706, 5)
+
+[node name="block" parent="TheMapItSelf" unique_id=311772346 instance=ExtResource("7_ejswk")]
+position = Vector2(19750, -2)
+rotation = 3.1415927
+scale = Vector2(838.0728, 91.06768)
+
+[node name="block2" parent="TheMapItSelf" unique_id=1447724031 instance=ExtResource("7_ejswk")]
+position = Vector2(1167, -3)
+
+[node name="block5" parent="TheMapItSelf" unique_id=1626525936 instance=ExtResource("7_ejswk")]
+position = Vector2(1316, -3)
+
+[node name="block6" parent="TheMapItSelf" unique_id=1223024318 instance=ExtResource("7_ejswk")]
+position = Vector2(1316, -51)
+
+[node name="block3" parent="TheMapItSelf" unique_id=1650363829 instance=ExtResource("7_ejswk")]
+position = Vector2(1835, -3)
+
+[node name="block7" parent="TheMapItSelf" unique_id=330537248 instance=ExtResource("7_ejswk")]
+position = Vector2(1984, -3)
+
+[node name="block8" parent="TheMapItSelf" unique_id=1144338045 instance=ExtResource("7_ejswk")]
+position = Vector2(1984, -51)
+
+[node name="block9" parent="TheMapItSelf" unique_id=376395899 instance=ExtResource("7_ejswk")]
+position = Vector2(1984, -3)
+
+[node name="block10" parent="TheMapItSelf" unique_id=430761930 instance=ExtResource("7_ejswk")]
+position = Vector2(1984, -51)
+
+[node name="block4" parent="TheMapItSelf" unique_id=959744661 instance=ExtResource("7_ejswk")]
+position = Vector2(2135, -98)
+
+[node name="block11" parent="TheMapItSelf" unique_id=348187895 instance=ExtResource("7_ejswk")]
+position = Vector2(2134, -3)
+
+[node name="block12" parent="TheMapItSelf" unique_id=1589530646 instance=ExtResource("7_ejswk")]
+position = Vector2(2134, -51)
+
+[node name="block13" parent="TheMapItSelf" unique_id=1486709979 instance=ExtResource("7_ejswk")]
+position = Vector2(2285, -98)
+
+[node name="block15" parent="TheMapItSelf" unique_id=967736177 instance=ExtResource("7_ejswk")]
+position = Vector2(2435, -98)
+
+[node name="block16" parent="TheMapItSelf" unique_id=214267142 instance=ExtResource("7_ejswk")]
+position = Vector2(2483, -98)
+
+[node name="block17" parent="TheMapItSelf" unique_id=119195035 instance=ExtResource("7_ejswk")]
+position = Vector2(2483, -49)
+
+[node name="block18" parent="TheMapItSelf" unique_id=1852730262 instance=ExtResource("7_ejswk")]
+position = Vector2(2483, 0)
+
+[node name="block21" parent="TheMapItSelf" unique_id=295463996 instance=ExtResource("7_ejswk")]
+position = Vector2(2632, -98)
+
+[node name="block22" parent="TheMapItSelf" unique_id=442199679 instance=ExtResource("7_ejswk")]
+position = Vector2(2632, -49)
+
+[node name="block23" parent="TheMapItSelf" unique_id=1573352792 instance=ExtResource("7_ejswk")]
+position = Vector2(2632, 0)
+
+[node name="block27" parent="TheMapItSelf" unique_id=1392132683 instance=ExtResource("7_ejswk")]
+position = Vector2(2682, 0)
+
+[node name="block28" parent="TheMapItSelf" unique_id=1726943567 instance=ExtResource("7_ejswk")]
+position = Vector2(2732, 0)
+
+[node name="block19" parent="TheMapItSelf" unique_id=1807127643 instance=ExtResource("7_ejswk")]
+position = Vector2(2632, -146)
+
+[node name="block25" parent="TheMapItSelf" unique_id=579869680 instance=ExtResource("7_ejswk")]
+position = Vector2(2782, 0)
+
+[node name="block29" parent="TheMapItSelf" unique_id=1799817997 instance=ExtResource("7_ejswk")]
+position = Vector2(2831, 0)
+
+[node name="block30" parent="TheMapItSelf" unique_id=992576071 instance=ExtResource("7_ejswk")]
+position = Vector2(2881, 0)
+
+[node name="block31" parent="TheMapItSelf" unique_id=1411764205 instance=ExtResource("7_ejswk")]
+position = Vector2(2931, 0)
+
+[node name="block32" parent="TheMapItSelf" unique_id=2014812543 instance=ExtResource("7_ejswk")]
+position = Vector2(2981, 0)
+
+[node name="block33" parent="TheMapItSelf" unique_id=1855553310 instance=ExtResource("7_ejswk")]
+position = Vector2(3031, 0)
+
+[node name="block34" parent="TheMapItSelf" unique_id=1687839983 instance=ExtResource("7_ejswk")]
+position = Vector2(3081, 0)
+
+[node name="block35" parent="TheMapItSelf" unique_id=769490060 instance=ExtResource("7_ejswk")]
+position = Vector2(3131, 0)
+
+[node name="block36" parent="TheMapItSelf" unique_id=252886083 instance=ExtResource("7_ejswk")]
+position = Vector2(3181, 0)
+
+[node name="block37" parent="TheMapItSelf" unique_id=1117346389 instance=ExtResource("7_ejswk")]
+position = Vector2(3230, 0)
+
+[node name="block38" parent="TheMapItSelf" unique_id=89039215 instance=ExtResource("7_ejswk")]
+position = Vector2(3280, 0)
+
+[node name="block47" parent="TheMapItSelf" unique_id=1689860512 instance=ExtResource("7_ejswk")]
+position = Vector2(3131, -106)
+
+[node name="block48" parent="TheMapItSelf" unique_id=1653554159 instance=ExtResource("7_ejswk")]
+position = Vector2(3181, -106)
+
+[node name="block49" parent="TheMapItSelf" unique_id=1724749135 instance=ExtResource("7_ejswk")]
+position = Vector2(3230, -106)
+
+[node name="block50" parent="TheMapItSelf" unique_id=176679689 instance=ExtResource("7_ejswk")]
+position = Vector2(3280, -106)
+
+[node name="block39" parent="TheMapItSelf" unique_id=391727916 instance=ExtResource("7_ejswk")]
+position = Vector2(3330, 0)
+
+[node name="block40" parent="TheMapItSelf" unique_id=504770253 instance=ExtResource("7_ejswk")]
+position = Vector2(3380, 0)
+
+[node name="block41" parent="TheMapItSelf" unique_id=2136108483 instance=ExtResource("7_ejswk")]
+position = Vector2(2682, -49)
+
+[node name="block42" parent="TheMapItSelf" unique_id=2091577820 instance=ExtResource("7_ejswk")]
+position = Vector2(2732, -49)
+
+[node name="block26" parent="TheMapItSelf" unique_id=1337889062 instance=ExtResource("7_ejswk")]
+position = Vector2(2782, -49)
+
+[node name="block43" parent="TheMapItSelf" unique_id=1853072459 instance=ExtResource("7_ejswk")]
+position = Vector2(2831, -49)
+
+[node name="block44" parent="TheMapItSelf" unique_id=1849344841 instance=ExtResource("7_ejswk")]
+position = Vector2(2881, -49)
+
+[node name="block45" parent="TheMapItSelf" unique_id=1447417134 instance=ExtResource("7_ejswk")]
+position = Vector2(2931, -49)
+
+[node name="block46" parent="TheMapItSelf" unique_id=1195000379 instance=ExtResource("7_ejswk")]
+position = Vector2(2981, -49)
+
+[node name="block55" parent="TheMapItSelf" unique_id=509010572 instance=ExtResource("7_ejswk")]
+position = Vector2(3430, 0)
+
+[node name="block56" parent="TheMapItSelf" unique_id=611822488 instance=ExtResource("7_ejswk")]
+position = Vector2(3480, 0)
+
+[node name="block57" parent="TheMapItSelf" unique_id=319491547 instance=ExtResource("7_ejswk")]
+position = Vector2(3529, 0)
+
+[node name="block58" parent="TheMapItSelf" unique_id=1404598412 instance=ExtResource("7_ejswk")]
+position = Vector2(3579, 0)
+
+[node name="block59" parent="TheMapItSelf" unique_id=712914127 instance=ExtResource("7_ejswk")]
+position = Vector2(3629, 0)
+
+[node name="block60" parent="TheMapItSelf" unique_id=1336258877 instance=ExtResource("7_ejswk")]
+position = Vector2(3679, 0)
+
+[node name="block61" parent="TheMapItSelf" unique_id=1776949153 instance=ExtResource("7_ejswk")]
+position = Vector2(3430, -49)
+
+[node name="block62" parent="TheMapItSelf" unique_id=91713069 instance=ExtResource("7_ejswk")]
+position = Vector2(3480, -49)
+
+[node name="block63" parent="TheMapItSelf" unique_id=1505561914 instance=ExtResource("7_ejswk")]
+position = Vector2(3529, -49)
+
+[node name="block64" parent="TheMapItSelf" unique_id=156991076 instance=ExtResource("7_ejswk")]
+position = Vector2(3579, -49)
+
+[node name="block65" parent="TheMapItSelf" unique_id=801524556 instance=ExtResource("7_ejswk")]
+position = Vector2(3629, -49)
+
+[node name="block66" parent="TheMapItSelf" unique_id=1570166111 instance=ExtResource("7_ejswk")]
+position = Vector2(3679, -49)
+
+[node name="block67" parent="TheMapItSelf" unique_id=906734512 instance=ExtResource("7_ejswk")]
+position = Vector2(3830, 0)
+
+[node name="block68" parent="TheMapItSelf" unique_id=539983435 instance=ExtResource("7_ejswk")]
+position = Vector2(3830, -49)
+
+[node name="block70" parent="TheMapItSelf" unique_id=659611754 instance=ExtResource("7_ejswk")]
+position = Vector2(3830, -97)
+
+[node name="block20" parent="TheMapItSelf" unique_id=681943397 instance=ExtResource("7_ejswk")]
+position = Vector2(2781.9998, -195)
+
+[node name="spike5" parent="TheMapItSelf" unique_id=585310559 instance=ExtResource("6_6sh32")]
+position = Vector2(2778, -241)
+
+[node name="spike6" parent="TheMapItSelf" unique_id=944834624 instance=ExtResource("6_6sh32")]
+position = Vector2(3725, 5)
+
+[node name="spike7" parent="TheMapItSelf" unique_id=284411532 instance=ExtResource("6_6sh32")]
+position = Vector2(3775.0002, 5)
+
+[node name="block76" parent="TheMapItSelf" unique_id=1730948113 instance=ExtResource("7_ejswk")]
+position = Vector2(4232, 0)
+
+[node name="block77" parent="TheMapItSelf" unique_id=235610572 instance=ExtResource("7_ejswk")]
+position = Vector2(4232, -49)
+
+[node name="block78" parent="TheMapItSelf" unique_id=201940837 instance=ExtResource("7_ejswk")]
+position = Vector2(4232, -97)
+
+[node name="spike11" parent="TheMapItSelf" unique_id=83735605 instance=ExtResource("6_6sh32")]
+position = Vector2(4127, 5)
+
+[node name="spike12" parent="TheMapItSelf" unique_id=1558137816 instance=ExtResource("6_6sh32")]
+position = Vector2(4177, 5)
+
+[node name="block69" parent="TheMapItSelf" unique_id=984792644 instance=ExtResource("7_ejswk")]
+position = Vector2(3981, 0)
+
+[node name="block71" parent="TheMapItSelf" unique_id=164531765 instance=ExtResource("7_ejswk")]
+position = Vector2(3981, -49)
+
+[node name="block72" parent="TheMapItSelf" unique_id=557125477 instance=ExtResource("7_ejswk")]
+position = Vector2(3981, -97)
+
+[node name="spike8" parent="TheMapItSelf" unique_id=547553708 instance=ExtResource("6_6sh32")]
+position = Vector2(3876, 5)
+
+[node name="spike9" parent="TheMapItSelf" unique_id=249318837 instance=ExtResource("6_6sh32")]
+position = Vector2(3926.0002, 5)
+
+[node name="block73" parent="TheMapItSelf" unique_id=1318341854 instance=ExtResource("7_ejswk")]
+position = Vector2(4082, 1)
+
+[node name="block74" parent="TheMapItSelf" unique_id=971359450 instance=ExtResource("7_ejswk")]
+position = Vector2(4082, -48)
+
+[node name="block75" parent="TheMapItSelf" unique_id=1601767978 instance=ExtResource("7_ejswk")]
+position = Vector2(4082, -96)
+
+[node name="spike10" parent="TheMapItSelf" unique_id=1412531360 instance=ExtResource("6_6sh32")]
+position = Vector2(4027, 6)
+
+[node name="block14" parent="TheMapItSelf" unique_id=369339947 instance=ExtResource("7_ejswk")]
+position = Vector2(3981, -146)
+
+[node name="block79" parent="TheMapItSelf" unique_id=560857705 instance=ExtResource("7_ejswk")]
+position = Vector2(4382, 0)
+
+[node name="block80" parent="TheMapItSelf" unique_id=1973230684 instance=ExtResource("7_ejswk")]
+position = Vector2(4382, -49)
+
+[node name="block81" parent="TheMapItSelf" unique_id=203325248 instance=ExtResource("7_ejswk")]
+position = Vector2(4382, -97)
+
+[node name="block82" parent="TheMapItSelf" unique_id=955832646 instance=ExtResource("7_ejswk")]
+position = Vector2(4483, 1)
+
+[node name="block83" parent="TheMapItSelf" unique_id=1384430365 instance=ExtResource("7_ejswk")]
+position = Vector2(4483, -48)
+
+[node name="block84" parent="TheMapItSelf" unique_id=678434952 instance=ExtResource("7_ejswk")]
+position = Vector2(4483, -96)
+
+[node name="block85" parent="TheMapItSelf" unique_id=1365623443 instance=ExtResource("7_ejswk")]
+position = Vector2(4532, 1)
+
+[node name="block86" parent="TheMapItSelf" unique_id=922624024 instance=ExtResource("7_ejswk")]
+position = Vector2(4532, -48)
+
+[node name="block87" parent="TheMapItSelf" unique_id=1436945793 instance=ExtResource("7_ejswk")]
+position = Vector2(4532, -96)
+
+[node name="block88" parent="TheMapItSelf" unique_id=1824673599 instance=ExtResource("7_ejswk")]
+position = Vector2(4581, 1)
+
+[node name="block89" parent="TheMapItSelf" unique_id=221621719 instance=ExtResource("7_ejswk")]
+position = Vector2(4581, -48)
+
+[node name="block90" parent="TheMapItSelf" unique_id=485520844 instance=ExtResource("7_ejswk")]
+position = Vector2(4581, -96)
+
+[node name="block91" parent="TheMapItSelf" unique_id=1138474544 instance=ExtResource("7_ejswk")]
+position = Vector2(4630, 1)
+
+[node name="block92" parent="TheMapItSelf" unique_id=180996463 instance=ExtResource("7_ejswk")]
+position = Vector2(4630, -48)
+
+[node name="block93" parent="TheMapItSelf" unique_id=2093338875 instance=ExtResource("7_ejswk")]
+position = Vector2(4630, -96)
+
+[node name="block94" parent="TheMapItSelf" unique_id=449527026 instance=ExtResource("7_ejswk")]
+position = Vector2(4679, 1)
+
+[node name="block95" parent="TheMapItSelf" unique_id=1378203553 instance=ExtResource("7_ejswk")]
+position = Vector2(4679, -48)
+
+[node name="block96" parent="TheMapItSelf" unique_id=1696650222 instance=ExtResource("7_ejswk")]
+position = Vector2(4679, -96)
+
+[node name="block97" parent="TheMapItSelf" unique_id=133762219 instance=ExtResource("7_ejswk")]
+position = Vector2(4728, 1)
+
+[node name="block98" parent="TheMapItSelf" unique_id=1971757855 instance=ExtResource("7_ejswk")]
+position = Vector2(4728, -48)
+
+[node name="block99" parent="TheMapItSelf" unique_id=1793227183 instance=ExtResource("7_ejswk")]
+position = Vector2(4728, -96)
+
+[node name="block100" parent="TheMapItSelf" unique_id=655107289 instance=ExtResource("7_ejswk")]
+position = Vector2(4777, 1)
+
+[node name="block101" parent="TheMapItSelf" unique_id=1672536809 instance=ExtResource("7_ejswk")]
+position = Vector2(4777, -48)
+
+[node name="block102" parent="TheMapItSelf" unique_id=1383774785 instance=ExtResource("7_ejswk")]
+position = Vector2(4777, -96)
+
+[node name="block103" parent="TheMapItSelf" unique_id=75070851 instance=ExtResource("7_ejswk")]
+position = Vector2(4826, 1)
+
+[node name="block104" parent="TheMapItSelf" unique_id=1627969570 instance=ExtResource("7_ejswk")]
+position = Vector2(4826, -48)
+
+[node name="block105" parent="TheMapItSelf" unique_id=1150996445 instance=ExtResource("7_ejswk")]
+position = Vector2(4826, -96)
+
+[node name="block106" parent="TheMapItSelf" unique_id=1811560866 instance=ExtResource("7_ejswk")]
+position = Vector2(4875, 1)
+
+[node name="block107" parent="TheMapItSelf" unique_id=891666402 instance=ExtResource("7_ejswk")]
+position = Vector2(4875, -48)
+
+[node name="block108" parent="TheMapItSelf" unique_id=364384116 instance=ExtResource("7_ejswk")]
+position = Vector2(4875, -96)
+
+[node name="block109" parent="TheMapItSelf" unique_id=782792587 instance=ExtResource("7_ejswk")]
+position = Vector2(4924, 1)
+
+[node name="block110" parent="TheMapItSelf" unique_id=550338862 instance=ExtResource("7_ejswk")]
+position = Vector2(4924, -48)
+
+[node name="block111" parent="TheMapItSelf" unique_id=754523780 instance=ExtResource("7_ejswk")]
+position = Vector2(4924, -96)
+
+[node name="block112" parent="TheMapItSelf" unique_id=599405609 instance=ExtResource("7_ejswk")]
+position = Vector2(4973, 1)
+
+[node name="block113" parent="TheMapItSelf" unique_id=1568165813 instance=ExtResource("7_ejswk")]
+position = Vector2(4973, -48)
+
+[node name="block114" parent="TheMapItSelf" unique_id=1550536397 instance=ExtResource("7_ejswk")]
+position = Vector2(4973, -96)
+
+[node name="block115" parent="TheMapItSelf" unique_id=93052318 instance=ExtResource("7_ejswk")]
+position = Vector2(5022, 1)
+
+[node name="block116" parent="TheMapItSelf" unique_id=2027876324 instance=ExtResource("7_ejswk")]
+position = Vector2(5022, -48)
+
+[node name="block117" parent="TheMapItSelf" unique_id=1830792505 instance=ExtResource("7_ejswk")]
+position = Vector2(5022, -96)
+
+[node name="block118" parent="TheMapItSelf" unique_id=1603070843 instance=ExtResource("7_ejswk")]
+position = Vector2(5071, 1)
+
+[node name="block119" parent="TheMapItSelf" unique_id=1268396986 instance=ExtResource("7_ejswk")]
+position = Vector2(5071, -48)
+
+[node name="block120" parent="TheMapItSelf" unique_id=642064468 instance=ExtResource("7_ejswk")]
+position = Vector2(5071, -96)
+
+[node name="block121" parent="TheMapItSelf" unique_id=695317214 instance=ExtResource("7_ejswk")]
+position = Vector2(5120, 1)
+
+[node name="block122" parent="TheMapItSelf" unique_id=408763815 instance=ExtResource("7_ejswk")]
+position = Vector2(5120, -48)
+
+[node name="block123" parent="TheMapItSelf" unique_id=1596383298 instance=ExtResource("7_ejswk")]
+position = Vector2(5120, -96)
+
+[node name="block124" parent="TheMapItSelf" unique_id=276384802 instance=ExtResource("7_ejswk")]
+position = Vector2(5169, 1)
+
+[node name="block125" parent="TheMapItSelf" unique_id=1283928999 instance=ExtResource("7_ejswk")]
+position = Vector2(5169, -48)
+
+[node name="block126" parent="TheMapItSelf" unique_id=2125130704 instance=ExtResource("7_ejswk")]
+position = Vector2(5169, -96)
+
+[node name="block127" parent="TheMapItSelf" unique_id=62130526 instance=ExtResource("7_ejswk")]
+position = Vector2(5218, 1)
+
+[node name="block128" parent="TheMapItSelf" unique_id=1194775233 instance=ExtResource("7_ejswk")]
+position = Vector2(5218, -48)
+
+[node name="block129" parent="TheMapItSelf" unique_id=1156542169 instance=ExtResource("7_ejswk")]
+position = Vector2(5218, -96)
+
+[node name="spike13" parent="TheMapItSelf" unique_id=564708287 instance=ExtResource("6_6sh32")]
+position = Vector2(4428, 6)
+
+[node name="block24" parent="TheMapItSelf" unique_id=765744735 instance=ExtResource("7_ejswk")]
+position = Vector2(4382, -146)
+
+[node name="jumppad" parent="TheMapItSelf" unique_id=1645627435 instance=ExtResource("8_bbk5w")]
+position = Vector2(4633, -145)
+
+[node name="spike14" parent="TheMapItSelf" unique_id=470995733 instance=ExtResource("6_6sh32")]
+position = Vector2(1880, 2)
+
+[node name="spike15" parent="TheMapItSelf" unique_id=1899023162 instance=ExtResource("6_6sh32")]
+position = Vector2(1930, 2)
+
+[node name="spike16" parent="TheMapItSelf" unique_id=2086357538 instance=ExtResource("6_6sh32")]
+position = Vector2(2029, 2)
+
+[node name="spike17" parent="TheMapItSelf" unique_id=111112532 instance=ExtResource("6_6sh32")]
+position = Vector2(2079, 2)
+
+[node name="spike18" parent="TheMapItSelf" unique_id=244726388 instance=ExtResource("6_6sh32")]
+position = Vector2(2178, 2)
+
+[node name="spike19" parent="TheMapItSelf" unique_id=1865101923 instance=ExtResource("6_6sh32")]
+position = Vector2(2228, 2)
+
+[node name="spike20" parent="TheMapItSelf" unique_id=1001756256 instance=ExtResource("6_6sh32")]
+position = Vector2(2278, 2)
+
+[node name="spike21" parent="TheMapItSelf" unique_id=682720347 instance=ExtResource("6_6sh32")]
+position = Vector2(2328, 2)
+
+[node name="spike22" parent="TheMapItSelf" unique_id=1919424628 instance=ExtResource("6_6sh32")]
+position = Vector2(2377, 2)
+
+[node name="spike23" parent="TheMapItSelf" unique_id=2065927373 instance=ExtResource("6_6sh32")]
+position = Vector2(2427, 2)
+
+[node name="spike24" parent="TheMapItSelf" unique_id=111968139 instance=ExtResource("6_6sh32")]
+position = Vector2(4277, 5)
+
+[node name="spike25" parent="TheMapItSelf" unique_id=1053166247 instance=ExtResource("6_6sh32")]
+position = Vector2(4327, 5)
+
+[node name="spike26" parent="TheMapItSelf" unique_id=1112506605 instance=ExtResource("6_6sh32")]
+position = Vector2(2528, 4)
+
+[node name="spike27" parent="TheMapItSelf" unique_id=183507091 instance=ExtResource("6_6sh32")]
+position = Vector2(2577, 4)
+
+[connection signal="body_entered" from="followzone" to="followzone" method="_on_body_entered"]
