@@ -28,10 +28,15 @@ window/stretch/aspect="expand"
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
+[global_group]
+
+music=""
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
