@@ -2,6 +2,9 @@ extends CharacterBody2D
 
 const T = 250
 
+const MUSIC_FADE_TIME = 0.4
+@onready var explosion: AnimatedSprite2D = $explosion
+
 
 const JUMP_BUFFER_TIME = 0.12
 var jump_buffer_timer = 0.0
@@ -50,7 +53,11 @@ func _physics_process(delta: float) -> void:
 	
 	for i in get_slide_collision_count():
 		var hit = get_slide_collision(i)
+		var n = hit.get_normal()
 		if abs(hit.get_normal().x) > 0.9:
+			die()
+			return
+		if mode == Mode.ROLL and n.y > 0.9:
 			die()
 			return
 	
@@ -105,10 +112,29 @@ func set_mode(new_mode :int):
 		sprite.rotation = 0.0
 
 func die():
-	GameManager.attempts += 1
-	
+	if dead or finishe:
+		return
 	dead = true
+	GameManager.attempts += 1
+	velocity = Vector2.ZERO
+	
+	fade_out_music()
+	
+	$explosionsound.play()
+	sprite.visible = false
+	explosion.visible = true
+	explosion.play("default")
+	await explosion.animation_finished
+	
 	get_tree().reload_current_scene()
+
+func fade_out_music():
+	var music = get_tree().get_first_node_in_group("music")
+	if music == null:
+		return
+	var tween = create_tween()
+	tween.tween_property(music, "volume_db", -40.0, MUSIC_FADE_TIME)
+	tween.tween_callback(music.stop)
 
 func finish_level():
 	finishe = true
