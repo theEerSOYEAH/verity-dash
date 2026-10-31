@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ii0m2djkmoff" path="res://scripts/verity.gd" id="1_6kb7q"]
 [ext_resource type="Texture2D" uid="uid://cacbaeodqf3h2" path="res://assets/verity-removebg-preview.png" id="2_05v41"]
+[ext_resource type="Texture2D" uid="uid://bl18uk4id0pfg" path="res://assets/explosion tutorial files/explosion.png" id="3_05v41"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8hlnv"]
 atlas = ExtResource("2_05v41")
@@ -21,6 +22,77 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_h621j"]
 radius = 15.132746
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_05v41"]
+atlas = ExtResource("3_05v41")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqtp8"]
+atlas = ExtResource("3_05v41")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qq1xj"]
+atlas = ExtResource("3_05v41")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x50gr"]
+atlas = ExtResource("3_05v41")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcgvt"]
+atlas = ExtResource("3_05v41")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3c1yo"]
+atlas = ExtResource("3_05v41")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2ibm"]
+atlas = ExtResource("3_05v41")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6yx1"]
+atlas = ExtResource("3_05v41")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hctn4"]
+atlas = ExtResource("3_05v41")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_po753"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05v41")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqtp8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qq1xj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x50gr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcgvt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c1yo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n2ibm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6yx1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hctn4")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 13.0
+}]
+
 [node name="verity" type="CharacterBody2D" unique_id=1912265165]
 scale = Vector2(1.655, 1.655)
 script = ExtResource("1_6kb7q")
@@ -29,6 +101,15 @@ script = ExtResource("1_6kb7q")
 position = Vector2(7.1054274e-15, 1)
 scale = Vector2(0.11550309, 0.115503095)
 sprite_frames = SubResource("SpriteFrames_h621j")
+frame_progress = 0.17878954
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=133025736]
 shape = SubResource("CircleShape2D_h621j")
+
+[node name="explosion" type="AnimatedSprite2D" parent="." unique_id=219011537]
+visible = false
+position = Vector2(-9.536743e-07, 0)
+scale = Vector2(1.8479985, 1.8479985)
+sprite_frames = SubResource("SpriteFrames_po753")
+frame = 8
+frame_progress = 1.0
