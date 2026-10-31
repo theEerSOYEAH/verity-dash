@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bj0e1wpmtol0" path="res://scenes/camera_2d.gd" id="1_2ku1j"]
 [ext_resource type="PackedScene" uid="uid://b2f2fmaq3pt4n" path="res://scenes/verity.tscn" id="2_f31uk"]
+[ext_resource type="AudioStream" uid="uid://c0r7xbtjb4v3k" path="res://assets/BOOM sound effect.mp3" id="4_conm7"]
 [ext_resource type="Script" uid="uid://dnb1arrh01mma" path="res://scenes/followzone.gd" id="4_i8kv5"]
 [ext_resource type="AudioStream" uid="uid://dj2wo7pftnwlo" path="res://assets/[KARAOKE] Its me, Its Verity - Horror Skunx (official song).mp3" id="5_ru4tf"]
 [ext_resource type="PackedScene" uid="uid://bmegmr75g4xv3" path="res://scenes/spike.tscn" id="6_6sh32"]
@@ -27,11 +28,18 @@ player_offset_x = 0.0
 [node name="verity" parent="." unique_id=1912265165 instance=ExtResource("2_f31uk")]
 position = Vector2(-790, -66)
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="verity" unique_id=1364961920]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="verity" unique_id=1364961920 groups=["music"]]
 position = Vector2(0.6042156, 0)
 scale = Vector2(0.6042296, 0.6042296)
 stream = ExtResource("5_ru4tf")
 autoplay = true
+
+[node name="Timer" type="Timer" parent="verity" unique_id=1075758344]
+wait_time = 0.5
+one_shot = true
+
+[node name="explosionsound" type="AudioStreamPlayer2D" parent="verity" unique_id=787280350]
+stream = ExtResource("4_conm7")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=806101187]
 
@@ -360,33 +368,6 @@ position = Vector2(4630, -48)
 [node name="block93" parent="TheMapItSelf" unique_id=2093338875 instance=ExtResource("7_ejswk")]
 position = Vector2(4630, -96)
 
-[node name="block94" parent="TheMapItSelf" unique_id=449527026 instance=ExtResource("7_ejswk")]
-position = Vector2(4679, 1)
-
-[node name="block95" parent="TheMapItSelf" unique_id=1378203553 instance=ExtResource("7_ejswk")]
-position = Vector2(4679, -48)
-
-[node name="block96" parent="TheMapItSelf" unique_id=1696650222 instance=ExtResource("7_ejswk")]
-position = Vector2(4679, -96)
-
-[node name="block97" parent="TheMapItSelf" unique_id=133762219 instance=ExtResource("7_ejswk")]
-position = Vector2(4728, 1)
-
-[node name="block98" parent="TheMapItSelf" unique_id=1971757855 instance=ExtResource("7_ejswk")]
-position = Vector2(4728, -48)
-
-[node name="block99" parent="TheMapItSelf" unique_id=1793227183 instance=ExtResource("7_ejswk")]
-position = Vector2(4728, -96)
-
-[node name="block100" parent="TheMapItSelf" unique_id=655107289 instance=ExtResource("7_ejswk")]
-position = Vector2(4777, 1)
-
-[node name="block101" parent="TheMapItSelf" unique_id=1672536809 instance=ExtResource("7_ejswk")]
-position = Vector2(4777, -48)
-
-[node name="block102" parent="TheMapItSelf" unique_id=1383774785 instance=ExtResource("7_ejswk")]
-position = Vector2(4777, -96)
-
 [node name="block103" parent="TheMapItSelf" unique_id=75070851 instance=ExtResource("7_ejswk")]
 position = Vector2(4826, 1)
 
@@ -432,6 +413,15 @@ position = Vector2(5022, -48)
 [node name="block117" parent="TheMapItSelf" unique_id=1830792505 instance=ExtResource("7_ejswk")]
 position = Vector2(5022, -96)
 
+[node name="block130" parent="TheMapItSelf" unique_id=976477100 instance=ExtResource("7_ejswk")]
+position = Vector2(5072, -337)
+
+[node name="block131" parent="TheMapItSelf" unique_id=1277390854 instance=ExtResource("7_ejswk")]
+position = Vector2(5022, -337)
+
+[node name="block132" parent="TheMapItSelf" unique_id=1296258016 instance=ExtResource("7_ejswk")]
+position = Vector2(5121, -337)
+
 [node name="block118" parent="TheMapItSelf" unique_id=1603070843 instance=ExtResource("7_ejswk")]
 position = Vector2(5071, 1)
 
@@ -467,6 +457,57 @@ position = Vector2(5218, -48)
 
 [node name="block129" parent="TheMapItSelf" unique_id=1156542169 instance=ExtResource("7_ejswk")]
 position = Vector2(5218, -96)
+
+[node name="block133" parent="TheMapItSelf" unique_id=1281224594 instance=ExtResource("7_ejswk")]
+position = Vector2(5316, -145)
+
+[node name="block134" parent="TheMapItSelf" unique_id=923911149 instance=ExtResource("7_ejswk")]
+position = Vector2(5364.9995, -145)
+
+[node name="block141" parent="TheMapItSelf" unique_id=2137519246 instance=ExtResource("7_ejswk")]
+position = Vector2(5756, -96)
+
+[node name="block142" parent="TheMapItSelf" unique_id=1617275957 instance=ExtResource("7_ejswk")]
+position = Vector2(5804.9995, -96)
+
+[node name="block151" parent="TheMapItSelf" unique_id=1500351885 instance=ExtResource("7_ejswk")]
+position = Vector2(6342.9995, -97)
+
+[node name="block153" parent="TheMapItSelf" unique_id=415410235 instance=ExtResource("7_ejswk")]
+position = Vector2(6391.9995, -97)
+
+[node name="block143" parent="TheMapItSelf" unique_id=585685584 instance=ExtResource("7_ejswk")]
+position = Vector2(5903, -145)
+
+[node name="block144" parent="TheMapItSelf" unique_id=295133698 instance=ExtResource("7_ejswk")]
+position = Vector2(5951.9995, -145)
+
+[node name="block145" parent="TheMapItSelf" unique_id=986012594 instance=ExtResource("7_ejswk")]
+position = Vector2(6051, -193.99998)
+
+[node name="block146" parent="TheMapItSelf" unique_id=1782326949 instance=ExtResource("7_ejswk")]
+position = Vector2(6099.9995, -193.99998)
+
+[node name="block147" parent="TheMapItSelf" unique_id=1399676275 instance=ExtResource("7_ejswk")]
+position = Vector2(6149, -193.99998)
+
+[node name="block148" parent="TheMapItSelf" unique_id=383859704 instance=ExtResource("7_ejswk")]
+position = Vector2(6198, -193.99998)
+
+[node name="block149" parent="TheMapItSelf" unique_id=254418105 instance=ExtResource("7_ejswk")]
+position = Vector2(6247.0005, -193.99998)
+
+[node name="block139" parent="TheMapItSelf" unique_id=298992637 instance=ExtResource("7_ejswk")]
+position = Vector2(5611, -243)
+
+[node name="block140" parent="TheMapItSelf" unique_id=282389521 instance=ExtResource("7_ejswk")]
+position = Vector2(5659.9995, -243)
+
+[node name="block137" parent="TheMapItSelf" unique_id=1684078603 instance=ExtResource("7_ejswk")]
+position = Vector2(5463, -194)
+
+[node name="block138" parent="TheMapItSelf" unique_id=301063995 instance=ExtResource("7_ejswk")]
+position = Vector2(5511.9995, -194)
 
 [node name="spike13" parent="TheMapItSelf" unique_id=564708287 instance=ExtResource("6_6sh32")]
 position = Vector2(4428, 6)
@@ -518,5 +559,122 @@ position = Vector2(2528, 4)
 
 [node name="spike27" parent="TheMapItSelf" unique_id=183507091 instance=ExtResource("6_6sh32")]
 position = Vector2(2577, 4)
+
+[node name="spike28" parent="TheMapItSelf" unique_id=858642736 instance=ExtResource("6_6sh32")]
+position = Vector2(5130, -342)
+rotation = 3.1415927
+
+[node name="spike29" parent="TheMapItSelf" unique_id=1222580085 instance=ExtResource("6_6sh32")]
+position = Vector2(5081.0005, -342)
+rotation = 3.1415927
+
+[node name="spike30" parent="TheMapItSelf" unique_id=951899528 instance=ExtResource("6_6sh32")]
+position = Vector2(5179.0005, -342)
+rotation = 3.1415927
+
+[node name="spike31" parent="TheMapItSelf" unique_id=1811806500 instance=ExtResource("6_6sh32")]
+position = Vector2(6146, -240)
+
+[node name="spike32" parent="TheMapItSelf" unique_id=1669022063 instance=ExtResource("6_6sh32")]
+position = Vector2(4675, 6)
+
+[node name="spike33" parent="TheMapItSelf" unique_id=118224760 instance=ExtResource("6_6sh32")]
+position = Vector2(4724.0005, 6)
+
+[node name="spike34" parent="TheMapItSelf" unique_id=1192070687 instance=ExtResource("6_6sh32")]
+position = Vector2(4773.0005, 6)
+
+[node name="spike35" parent="TheMapItSelf" unique_id=1904773379 instance=ExtResource("6_6sh32")]
+position = Vector2(5263, 6)
+
+[node name="spike36" parent="TheMapItSelf" unique_id=347715359 instance=ExtResource("6_6sh32")]
+position = Vector2(5312.0005, 6)
+
+[node name="spike37" parent="TheMapItSelf" unique_id=1443716132 instance=ExtResource("6_6sh32")]
+position = Vector2(5361.0005, 6)
+
+[node name="spike38" parent="TheMapItSelf" unique_id=765908806 instance=ExtResource("6_6sh32")]
+position = Vector2(5411, 6)
+
+[node name="spike39" parent="TheMapItSelf" unique_id=956853125 instance=ExtResource("6_6sh32")]
+position = Vector2(5460.0005, 6)
+
+[node name="spike40" parent="TheMapItSelf" unique_id=950519622 instance=ExtResource("6_6sh32")]
+position = Vector2(5509.0005, 6)
+
+[node name="spike41" parent="TheMapItSelf" unique_id=1349623455 instance=ExtResource("6_6sh32")]
+position = Vector2(5558, 6)
+
+[node name="spike42" parent="TheMapItSelf" unique_id=1970124560 instance=ExtResource("6_6sh32")]
+position = Vector2(5607.0005, 6)
+
+[node name="spike43" parent="TheMapItSelf" unique_id=555573466 instance=ExtResource("6_6sh32")]
+position = Vector2(5656.0005, 6)
+
+[node name="spike44" parent="TheMapItSelf" unique_id=66610830 instance=ExtResource("6_6sh32")]
+position = Vector2(5706, 6)
+
+[node name="spike45" parent="TheMapItSelf" unique_id=1596688399 instance=ExtResource("6_6sh32")]
+position = Vector2(5755.0005, 6)
+
+[node name="spike46" parent="TheMapItSelf" unique_id=401834225 instance=ExtResource("6_6sh32")]
+position = Vector2(5804.0005, 6)
+
+[node name="spike47" parent="TheMapItSelf" unique_id=158678318 instance=ExtResource("6_6sh32")]
+position = Vector2(5854, 6)
+
+[node name="spike48" parent="TheMapItSelf" unique_id=1535549691 instance=ExtResource("6_6sh32")]
+position = Vector2(5903.0005, 6)
+
+[node name="spike49" parent="TheMapItSelf" unique_id=938783332 instance=ExtResource("6_6sh32")]
+position = Vector2(5952.0005, 6)
+
+[node name="spike50" parent="TheMapItSelf" unique_id=1422058421 instance=ExtResource("6_6sh32")]
+position = Vector2(6002, 6)
+
+[node name="spike51" parent="TheMapItSelf" unique_id=462625113 instance=ExtResource("6_6sh32")]
+position = Vector2(6051.0005, 6)
+
+[node name="spike52" parent="TheMapItSelf" unique_id=177376996 instance=ExtResource("6_6sh32")]
+position = Vector2(6100.0005, 6)
+
+[node name="spike53" parent="TheMapItSelf" unique_id=244096687 instance=ExtResource("6_6sh32")]
+position = Vector2(6149, 6)
+
+[node name="spike54" parent="TheMapItSelf" unique_id=437615968 instance=ExtResource("6_6sh32")]
+position = Vector2(6198.0005, 6)
+
+[node name="spike55" parent="TheMapItSelf" unique_id=2081037810 instance=ExtResource("6_6sh32")]
+position = Vector2(6247.0005, 6)
+
+[node name="spike56" parent="TheMapItSelf" unique_id=1660135624 instance=ExtResource("6_6sh32")]
+position = Vector2(6297, 6)
+
+[node name="spike57" parent="TheMapItSelf" unique_id=1179588134 instance=ExtResource("6_6sh32")]
+position = Vector2(6346.0005, 6)
+
+[node name="spike58" parent="TheMapItSelf" unique_id=953334941 instance=ExtResource("6_6sh32")]
+position = Vector2(6395.0005, 6)
+
+[node name="spike59" parent="TheMapItSelf" unique_id=880298898 instance=ExtResource("6_6sh32")]
+position = Vector2(6444, 6)
+
+[node name="spike60" parent="TheMapItSelf" unique_id=837489306 instance=ExtResource("6_6sh32")]
+position = Vector2(6493.0005, 6)
+
+[node name="spike61" parent="TheMapItSelf" unique_id=1627902526 instance=ExtResource("6_6sh32")]
+position = Vector2(6542.0005, 6)
+
+[node name="spike62" parent="TheMapItSelf" unique_id=1278444108 instance=ExtResource("6_6sh32")]
+position = Vector2(6592, 6)
+
+[node name="spike63" parent="TheMapItSelf" unique_id=1432754276 instance=ExtResource("6_6sh32")]
+position = Vector2(6641.0005, 6)
+
+[node name="spike64" parent="TheMapItSelf" unique_id=667713260 instance=ExtResource("6_6sh32")]
+position = Vector2(6690.0005, 6)
+
+[node name="jumppad2" parent="TheMapItSelf" unique_id=360260337 instance=ExtResource("8_bbk5w")]
+position = Vector2(5075, -144)
 
 [connection signal="body_entered" from="followzone" to="followzone" method="_on_body_entered"]
