@@ -11,11 +11,15 @@ You can play it on itch.io here: https://mubixd.itch.io/verity-dash
 You get to control a verity that cant stop moving forward. Try to beat the levels (currently there is only one level) without dying because if you do then well... you need to start over. You can also control the verity in a ship mode!!! And also very cool stuff like jumpads and jump orbs
 
 
-## Controls
+## How to Play
 
-Space or left click to jump (In ship mode you hold to go up and let go to fall).
-Esc to pause the game
-In the level select use the left and right arrows buttons to switch levels and click the ribbon to play
+- Start by clicking play and choosing a level in the level selector
+
+- In the level select use the left and right arrows buttons to switch levels and click the ribbon to play
+
+- Space or left click to jump (In ship mode you hold to go up and let go to fall).
+
+- Esc to pause the game
 
 ## Stuff in the levels
 
