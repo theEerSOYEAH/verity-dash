@@ -3,7 +3,7 @@
 A 2D game that is heavily inspired by Geometry Dash. Your verity keeps moving forward on its own and you have to time your jumps to get through the level without dying. If you die you start over from 0%
 
 # Where to play?
-You can play it on itch.io here: (i still didnt export the game)
+You can play it on itch.io here: https://mubixd.itch.io/verity-dash
 
 
 ## About
