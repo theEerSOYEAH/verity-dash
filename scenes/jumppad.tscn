@@ -22,6 +22,21 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Curve" id="Curve_8fc75"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_e6q6n"]
+offsets = PackedFloat32Array(0, 0.006172836, 0.037037015, 1)
+colors = PackedColorArray(0.9882353, 0.98039216, 0.05882353, 1, 0.74691355, 0.74691355, 0.74691355, 1, 0.69588214, 0.69588214, 0.69588214, 1, 0, 0, 0, 0)
+
+[sub_resource type="Curve" id="Curve_e6q6n"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_8fc75"]
+colors = PackedColorArray(1, 0.99215686, 0.35686275, 1, 1, 1, 1, 0)
+
 [node name="jumppad" type="Area2D" unique_id=1645627435]
 script = ExtResource("1_8iihu")
 
@@ -39,5 +54,43 @@ shape = SubResource("RectangleShape2D_8iihu")
 position = Vector2(20.999996, -2)
 scale = Vector2(0.45023698, 0.32352942)
 sprite_frames = SubResource("SpriteFrames_h621j")
+
+[node name="Particles" type="CPUParticles2D" parent="." unique_id=1987178519]
+position = Vector2(24, -2)
+amount = 20
+lifetime = 0.8
+randomness = 0.5
+emission_shape = 3
+emission_rect_extents = Vector2(20, 2)
+direction = Vector2(0, -1)
+spread = 20.0
+gravity = Vector2(0, -100)
+initial_velocity_min = 39.8
+initial_velocity_max = 99.2
+scale_amount_min = 3.0
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_8fc75")
+color = Color(0.9882353, 0.9882353, 0.11764706, 1)
+color_ramp = SubResource("Gradient_e6q6n")
+
+[node name="Burst" type="CPUParticles2D" parent="." unique_id=1129666228]
+position = Vector2(23, -3)
+emitting = false
+amount = 14
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(20, 2)
+direction = Vector2(0, -1)
+spread = 20.0
+gravity = Vector2(0, 300)
+initial_velocity_min = 150.0
+initial_velocity_max = 300.0
+scale_amount_min = 3.0
+scale_amount_max = 6.0
+scale_amount_curve = SubResource("Curve_e6q6n")
+color = Color(0.9843137, 0.9764706, 0.26666668, 1)
+color_ramp = SubResource("Gradient_8fc75")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
