@@ -13,7 +13,7 @@ You get to control a verity that cant stop moving forward. Try to beat the level
 
 ## Controls
 
-Space to jump (In ship mode you hold it to go up and let go to fall).
+Space or left click to jump (In ship mode you hold to go up and let go to fall).
 Esc to pause the game
 In the level select use the left and right arrows buttons to switch levels and click the ribbon to play
 
