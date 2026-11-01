@@ -1,0 +1,204 @@
+[gd_scene format=3 uid="uid://cj8viiyqillbm"]
+
+[ext_resource type="Script" uid="uid://dkh3kjydtbpxg" path="res://scripts/pause_menu.gd" id="1_88e76"]
+[ext_resource type="Texture2D" uid="uid://bylmo400jtcmb" path="res://assets/basic black/icon panel small.png" id="1_myx47"]
+[ext_resource type="Shader" uid="uid://7egwrt4es6xx" path="res://scripts/pause_menu.gdshader" id="2_knqa7"]
+[ext_resource type="Texture2D" uid="uid://co1urdc3rldo1" path="res://assets/basic black/ribbon.png" id="2_kukqi"]
+[ext_resource type="FontFile" uid="uid://tphvo0i11qn0" path="res://assets/LilitaOne-Regular.ttf" id="3_7l7mv"]
+[ext_resource type="Texture2D" uid="uid://1wumuw38fq43" path="res://assets/basic black/button wide idle.png" id="4_v4r4p"]
+[ext_resource type="Texture2D" uid="uid://v02dueasdo5a" path="res://assets/basic black/button wide clicked.png" id="5_1s2dm"]
+[ext_resource type="Texture2D" uid="uid://dyqq0m24aqphn" path="res://assets/basic black/button wide hover.png" id="6_v4r4p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v4r4p"]
+shader = ExtResource("2_knqa7")
+shader_parameter/blur_amount = 0.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_myx47"]
+texture = ExtResource("4_v4r4p")
+texture_margin_left = 30.0
+texture_margin_top = 30.0
+texture_margin_right = 30.0
+texture_margin_bottom = 30.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kukqi"]
+texture = ExtResource("5_1s2dm")
+texture_margin_left = 30.0
+texture_margin_top = 30.0
+texture_margin_right = 30.0
+texture_margin_bottom = 30.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5d2l8"]
+texture = ExtResource("6_v4r4p")
+texture_margin_left = 30.0
+texture_margin_top = 30.0
+texture_margin_right = 30.0
+texture_margin_bottom = 30.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_88e76"]
+texture = ExtResource("4_v4r4p")
+texture_margin_left = 30.0
+texture_margin_top = 30.0
+texture_margin_right = 30.0
+texture_margin_bottom = 30.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_71k7c"]
+texture = ExtResource("5_1s2dm")
+texture_margin_left = 30.0
+texture_margin_top = 30.0
+texture_margin_right = 30.0
+texture_margin_bottom = 30.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cmnsq"]
+texture = ExtResource("6_v4r4p")
+texture_margin_left = 30.0
+texture_margin_top = 30.0
+texture_margin_right = 30.0
+texture_margin_bottom = 30.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ofnjo"]
+texture = ExtResource("4_v4r4p")
+texture_margin_left = 30.0
+texture_margin_top = 30.0
+texture_margin_right = 30.0
+texture_margin_bottom = 30.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1rgno"]
+texture = ExtResource("5_1s2dm")
+texture_margin_left = 30.0
+texture_margin_top = 30.0
+texture_margin_right = 30.0
+texture_margin_bottom = 30.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1s2dm"]
+texture = ExtResource("6_v4r4p")
+texture_margin_left = 30.0
+texture_margin_top = 30.0
+texture_margin_right = 30.0
+texture_margin_bottom = 30.0
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=576934438]
+layer = 50
+script = ExtResource("1_88e76")
+
+[node name="Blur" type="ColorRect" parent="." unique_id=878517531]
+material = SubResource("ShaderMaterial_v4r4p")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Dim" type="ColorRect" parent="." unique_id=974491184]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.54901963)
+
+[node name="Window" type="NinePatchRect" parent="." unique_id=455502344]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -354.0
+offset_top = -200.0
+offset_right = 354.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_myx47")
+patch_margin_left = 40
+patch_margin_top = 40
+patch_margin_right = 40
+patch_margin_bottom = 40
+
+[node name="Ribbon" type="TextureRect" parent="Window" unique_id=1750200820]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -247.0
+offset_top = -245.0
+offset_right = 239.0
+offset_bottom = -145.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_kukqi")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TitleLabel" type="Label" parent="Window" unique_id=709883272]
+layout_mode = 0
+offset_left = 157.0
+offset_top = -43.0
+offset_right = 543.0
+offset_bottom = 28.0
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("3_7l7mv")
+theme_override_font_sizes/font_size = 61
+text = "PAUSED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="Window" unique_id=1873166551]
+layout_mode = 0
+offset_left = 204.0
+offset_top = 40.0
+offset_right = 504.0
+offset_bottom = 366.0
+theme_override_constants/separation = 16
+
+[node name="ResumeButton" type="Button" parent="Window/Buttons" unique_id=740551936]
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_7l7mv")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxTexture_myx47")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_kukqi")
+theme_override_styles/hover = SubResource("StyleBoxTexture_5d2l8")
+text = "RESUME"
+
+[node name="RestartButton" type="Button" parent="Window/Buttons" unique_id=1491378525]
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_7l7mv")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxTexture_88e76")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_71k7c")
+theme_override_styles/hover = SubResource("StyleBoxTexture_cmnsq")
+text = "RESTART"
+
+[node name="MenuButton" type="Button" parent="Window/Buttons" unique_id=1675413390]
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_7l7mv")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxTexture_ofnjo")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1rgno")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1s2dm")
+text = "MENU"
+
+[node name="CountdownLabel" type="Label" parent="." unique_id=959046965]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("3_7l7mv")
+theme_override_font_sizes/font_size = 140
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
