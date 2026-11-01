@@ -98,12 +98,12 @@ func _roll_physics(delta: float):
 	
 	roll.rotation += ROLL_SPEED * delta
 	
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("click"):
 		jump_buffer_timer = JUMP_BUFFER_TIME
 	else:
 		jump_buffer_timer -= delta
 	
-	var wants_jump = jump_buffer_timer > 0.0 or Input.is_action_pressed("ui_accept")
+	var wants_jump = jump_buffer_timer > 0.0 or Input.is_action_pressed("click")
 	if coyote_timer > 0.0 and wants_jump:
 		velocity.y = JUMP_VELOCITY
 		coyote_timer = 0.0
@@ -113,7 +113,7 @@ func _roll_physics(delta: float):
 	
 
 func _ship_physics(delta : float):
-	if Input.is_action_pressed("ui_accept"):
+	if Input.is_action_pressed("click"):
 		velocity.y += SHIP_THRUST * delta
 	else:
 		velocity.y += SHIP_GRAVITY * delta
@@ -126,7 +126,7 @@ func _ship_physics(delta : float):
 	
 
 func _wave_physics():
-	var pressing = Input.is_action_pressed("ui_accept")
+	var pressing = Input.is_action_pressed("click")
 	var dir = -1.0 if pressing else 1.0
 	velocity.y = dir * SPEED * WAVE_Y_MULT
 	
