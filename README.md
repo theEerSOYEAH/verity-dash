@@ -19,9 +19,15 @@ In the level select use the left and right arrows buttons to switch levels and c
 
 ## Stuff in the levels
 
-Jump pads launch you high into the air when you touch them.
+* blocks that are solid so you can stand over them and stuff but make sure not to crash into one or else... YOU DIE
 
-jump orbs also launches you into the air but only when you jump on them
+* spikes that kill you if you touch them
+
+* jump pads launch you high into the air when you touch them.
+
+* jump orbs also launches you into the air but only when you jump on them
+
+* portals so you could change your mode
 
 
 ## Progress Bar
@@ -55,8 +61,9 @@ Godot 4
 
 ## Makers of the game
 
-Mubixd69-ux
-TheEERSOYEAH
+- Mubixd69-ux
+
+- TheEERSOYEAH
 
 
 ## Have Suggestions or need Help?
