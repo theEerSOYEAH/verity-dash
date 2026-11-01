@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dna6j1tgel1fc" path="res://assets/healthbarProgress.png" id="4_r77uv"]
 [ext_resource type="Texture2D" uid="uid://bmyaj01batj28" path="res://assets/basic black/arrow left.png" id="5_r77uv"]
 [ext_resource type="Texture2D" uid="uid://d3piakc8fa8la" path="res://assets/basic black/arrow right.png" id="6_4nqmc"]
+[ext_resource type="Texture2D" uid="uid://b4glf2ricj3m8" path="res://assets/basic black/icons home.png" id="9_ckc44"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ckc44"]
 
@@ -136,6 +137,19 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_7plkq")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_7plkq")
 theme_override_styles/hover = SubResource("StyleBoxTexture_7plkq")
 
+[node name="HomeSprite" type="Sprite2D" parent="." unique_id=991921054]
+position = Vector2(53, 96)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("9_ckc44")
+
+[node name="BackButton" type="Button" parent="HomeSprite" unique_id=529729464]
+offset_left = -35.555557
+offset_top = -35.555557
+offset_right = 35.555557
+offset_bottom = 35.555557
+flat = true
+metadata/_edit_use_anchors_ = true
+
 [node name="PlayButton" type="Button" parent="." unique_id=754864757]
 layout_mode = 0
 offset_left = 69.0
@@ -144,20 +158,12 @@ offset_right = 77.0
 offset_bottom = 29.0
 flat = true
 
-[node name="BackButton" type="Button" parent="." unique_id=529729464]
-layout_mode = 0
-offset_left = 116.0
-offset_top = 64.0
-offset_right = 161.0
-offset_bottom = 95.0
-text = "Back"
-
 [node name="PageLabel" type="Label" parent="." unique_id=1144970032]
 layout_mode = 0
-offset_left = 12.0
-offset_top = 12.0
-offset_right = 52.0
-offset_bottom = 35.0
+offset_left = 18.0
+offset_top = 16.0
+offset_right = 78.0
+offset_bottom = 62.0
 theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("3_4nqmc")
 theme_override_font_sizes/font_size = 40

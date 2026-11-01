@@ -13,6 +13,9 @@ var current_index = 0
 var changing = false
 var card_start_x = 0.0
 
+var original_pos = {}
+var original_scale= {}
+
 @onready var background = $Background
 @onready var card = $Card
 @onready var name_label = $Card/NameLabel
@@ -22,7 +25,8 @@ var card_start_x = 0.0
 @onready var left_button = $Card/LeftButton
 @onready var right_button = $Card/RightButton
 @onready var ribbon = $Card/Ribbon
-@onready var back_button = $BackButton
+@onready var back_button = $HomeSprite/BackButton
+@onready var back_sprite = $HomeSprite
 
 
 var ribbon_scale = Vector2(1, 1)
@@ -50,9 +54,24 @@ func _ready() -> void:
 	bar_scale = progress_bar.scale
 	best_scale = best_label.scale
 	card_start_x = card.position.x
+	
+	for node in [ribbon, name_label, progress_bar, best_label]:
+		original_pos[node] = node.position
+		original_scale[node] = node.scale
 
 	left_button.pivot_offset = left_button.size / 2
 	right_button.pivot_offset = right_button.size / 2
+	
+	left_button.mouse_entered.connect(hover_left)
+	left_button.mouse_exited.connect(unhover_left)
+	right_button.mouse_entered.connect(hover_right)
+	right_button.mouse_exited.connect(unhover_right)
+	left_button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	right_button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	
+	back_button.mouse_entered.connect(hover_back)
+	back_button.mouse_exited.connect(unhover_back)
+	back_button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	
 	ribbon.pressed.connect(play_level)
 	ribbon.mouse_entered.connect(ribbon_hover)
@@ -128,9 +147,13 @@ func change_level(direction):
 	changing = false
 
 func pop_button(button):
+	var rest = Vector2(1, 1)
+	if button.is_hovered():
+		rest = Vector2(1.15, 1.15)
+	
 	var tween = create_tween()
 	tween.tween_property(button, "scale", Vector2(1.3, 1.3), 0.08)
-	tween.tween_property(button, "scale", Vector2(1, 1), 0.15)
+	tween.tween_property(button, "scale", rest, 0.15)
 
 func ribbon_hover():
 	hover_ribbon()
@@ -145,59 +168,81 @@ func ribbon_unhover():
 	unhover_best()
 
 func hover_ribbon():
-	ribbon.pivot_offset = ribbon.size / 2
-	
-	var tween = create_tween()
-	tween.set_parallel(true)
-	tween.tween_property(ribbon, "modulate", Color(1.4, 1.4, 1.4), 0.1)
-	tween.tween_property(ribbon, "scale", ribbon_scale * 1.05, 0.1)
+	grow(ribbon, 1.05)
 
 func hover_name():
-	name_label.pivot_offset = name_label.size / 2
-	var tween = create_tween()
-	tween.set_parallel(true)
-	tween.tween_property(name_label, "modulate", Color(1.4, 1.4, 1.4), 0.1)
-	tween.tween_property(name_label, "scale", name_scale * 1.05, 0.1)
+	grow(name_label, 1.05)
 
 func hover_bar():
-	progress_bar.pivot_offset = progress_bar.size / 2
-	var tween = create_tween()
-	tween.set_parallel(true)
-	tween.tween_property(progress_bar, "modulate", Color(1.4, 1.4, 1.4), 0.1)
-	tween.tween_property(progress_bar, "scale", bar_scale * 1.05, 0.1)
+	grow(progress_bar, 1.05)
 
 func hover_best():
-	best_label.pivot_offset = best_label.size / 2
-	var tween = create_tween()
-	tween.set_parallel(true)
-	tween.tween_property(best_label, "modulate", Color(1.4, 1.4, 1.4), 0.1)
-	tween.tween_property(best_label, "scale", best_scale * 1.05, 0.1)
-
+	grow(best_label, 1.05)
 
 func unhover_ribbon():
-	var tween = create_tween()
-	tween.set_parallel(true)
-	tween.tween_property(ribbon, "modulate", Color(1, 1, 1), 0.1)
-	tween.tween_property(ribbon, "scale", ribbon_scale, 0.1)
+	shrink(ribbon)
 
 func unhover_name():
-	var tween = create_tween()
-	tween.set_parallel(true)
-	tween.tween_property(name_label, "modulate", Color(1, 1, 1), 0.1)
-	tween.tween_property(name_label, "scale", name_scale, 0.1)
+	shrink(name_label)
 
 func unhover_bar():
-	var tween = create_tween()
-	tween.set_parallel(true)
-	tween.tween_property(progress_bar, "modulate", Color(1, 1, 1), 0.1)
-	tween.tween_property(progress_bar, "scale", bar_scale, 0.1)
+	shrink(progress_bar)
 
 func unhover_best():
+	shrink(best_label)
+
+
+func hover_left():
 	var tween = create_tween()
 	tween.set_parallel(true)
-	tween.tween_property(best_label, "modulate", Color(1, 1, 1), 0.1)
-	tween.tween_property(best_label, "scale", best_scale, 0.1)
+	tween.tween_property(left_button, "scale", Vector2(1.15, 1.15), 0.1)
+	tween.tween_property(left_button, "modulate", Color(1.4, 1.4, 1.4), 0.1)
 
+func unhover_left():
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(left_button, "scale", Vector2(1, 1), 0.1)
+	tween.tween_property(left_button, "modulate", Color(1, 1, 1), 0.1)
+
+func hover_right():
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(right_button, "scale", Vector2(1.15, 1.15), 0.1)
+	tween.tween_property(right_button, "modulate", Color(1.4, 1.4, 1.4), 0.1)
+
+func unhover_right():
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(right_button, "scale", Vector2(1, 1), 0.1)
+	tween.tween_property(right_button, "modulate", Color(1, 1, 1), 0.1)
+
+func hover_back():
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(back_sprite, "scale", Vector2(1.15, 1.15), 0.1)
+	tween.tween_property(back_sprite, "modulate", Color(1.4, 1.4, 1.4), 0.1)
+
+func unhover_back():
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(back_sprite, "scale", Vector2(0.9, 0.9), 0.1)
+	tween.tween_property(back_sprite, "modulate", Color(1, 1, 1), 0.1)
+
+func grow(node, amount):
+	var new_scale = original_scale[node] * amount
+	var extra = node.size * (new_scale - original_scale[node]) / 2
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(node, "scale", new_scale, 0.1)
+	tween.tween_property(node, "position", original_pos[node] - extra, 0.1)
+	tween.tween_property(node, "modulate", Color(1.4, 1.4, 1.4), 0.1)
+
+func shrink(node):
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(node, "scale", original_scale[node], 0.1)
+	tween.tween_property(node, "position", original_pos[node], 0.1)
+	tween.tween_property(node, "modulate", Color(1, 1, 1), 0.1)
 
 func play_level():
 	if changing == true:
