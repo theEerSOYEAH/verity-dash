@@ -17,6 +17,14 @@ func _ready():
 	retry_button.pressed.connect(_on_retry_pressed)
 	menu_button.pressed.connect(_on_menu_pressed)
 	
+	
+	retry_button.mouse_entered.connect(hover_button.bind(retry_button))
+	retry_button.mouse_exited.connect(unhover_button.bind(retry_button))
+	menu_button.mouse_entered.connect(hover_button.bind(menu_button))
+	menu_button.mouse_exited.connect(unhover_button.bind(menu_button))
+	retry_button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	menu_button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	
 func show_complete(attempts):
 	visible = true
 	get_tree().paused = true
@@ -37,6 +45,12 @@ func show_complete(attempts):
 	
 	var screen_size = get_viewport().get_visible_rect().size
 	confetti.position = Vector2(screen_size.x / 2, screen_size.y)
+	
+	await get_tree().process_frame
+	retry_button.pivot_offset = retry_button.size / 2
+	menu_button.pivot_offset = menu_button.size / 2
+	retry_button.scale = Vector2(1,1)
+	menu_button.scale = Vector2(1, 1)
 	
 	play_animation()
 
@@ -64,12 +78,30 @@ func play_animation():
 	tween.tween_property(buttons, "modulate:a", 1.0, 0.3)
 
 func _on_retry_pressed():
+	SoundManager.play(SoundManager.click_sound)
 	Engine.time_scale = 1.0
 	GameManager.attempts += 1
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 
+func hover_button(button):
+	SoundManager.play(SoundManager.hover_sound, -12)
+	var tween = create_tween()
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	tween.set_parallel(true)
+	tween.tween_property(button, "scale", Vector2(1.1, 1.1), 0.1)
+	tween.tween_property(button, "modulate", Color(1.4, 1.4, 1.4), 0.1)
+
+func unhover_button(button):
+	var tween = create_tween()
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	tween.set_parallel(true)
+	tween.tween_property(button, "scale", Vector2(1, 1), 0.1)
+	tween.tween_property(button, "modulate", Color(1, 1, 1), 0.1)
+	
+
 func _on_menu_pressed():
+	SoundManager.play(SoundManager.click_sound)
 	Engine.time_scale = 1.0
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/level_select.tscn")
