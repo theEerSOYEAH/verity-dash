@@ -2,21 +2,44 @@
 
 [ext_resource type="Script" uid="uid://17bu0dw054al" path="res://scripts/spike.gd" id="1_7a7y0"]
 [ext_resource type="Texture2D" uid="uid://ttkomvhvewte" path="res://icon.svg" id="2_d2mqm"]
+[ext_resource type="Texture2D" uid="uid://cu4cncchccn1n" path="res://assets/869656284_1904852830480530_8060694164625382046_n-removebg-preview.png" id="3_d2mqm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cx2lw"]
+atlas = ExtResource("3_d2mqm")
+region = Rect2(0, 0, 422, 591)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h621j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cx2lw")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h621j"]
-size = Vector2(17, 10)
+size = Vector2(11.855365, 14.783047)
 
 [node name="spike" type="Area2D" unique_id=530794688]
 scale = Vector2(1.687, 1.687)
 script = ExtResource("1_7a7y0")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=446187835]
+visible = false
 position = Vector2(19, -17)
 scale = Vector2(0.234375, 0.234375)
 texture = ExtResource("2_d2mqm")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=97974460]
+position = Vector2(18.96858, -26.081802)
+scale = Vector2(0.12764128, 0.16781926)
+sprite_frames = SubResource("SpriteFrames_h621j")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=165499928]
-position = Vector2(19, -8)
+position = Vector2(18.96858, -10.391523)
+scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_h621j")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
