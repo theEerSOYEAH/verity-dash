@@ -18,7 +18,7 @@ func _ready() -> void:
 	progress_bar.step = 0.01
 	progress_bar.value = 0
 	percent_label.text = "0%"
-	best_label.text = "Best: " + str(int(GameManager.best_percent)) + "%"
+	best_label.text = "Best: " + str(int(GameManager.get_best())) + "%"
 	
 func _process(delta: float) -> void:
 	if level_finished == true:
@@ -40,9 +40,9 @@ func _process(delta: float) -> void:
 	progress_bar.value = percent
 	percent_label.text = str(int(percent)) + "%"
 	
-	if percent > GameManager.best_percent:
-		GameManager.best_percent = percent
-		best_label.text = "Best: " + str(int(GameManager.best_percent)) + "%"
+	if percent > GameManager.get_best():
+		GameManager.set_best(percent)
+		best_label.text = "Best: " + str(int(percent)) + "%"
 	
 	if percent >= 100:
 		level_finished = true
