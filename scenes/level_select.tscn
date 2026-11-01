@@ -1,0 +1,163 @@
+[gd_scene format=3 uid="uid://bay34gum4ku1d"]
+
+[ext_resource type="Script" uid="uid://b0dscg6bl4mek" path="res://scripts/level_select.gd" id="1_3shnc"]
+[ext_resource type="Texture2D" uid="uid://bwtt4yya0ju0p" path="res://assets/basic black/button square idle.png" id="2_7plkq"]
+[ext_resource type="Texture2D" uid="uid://co1urdc3rldo1" path="res://assets/basic black/ribbon.png" id="2_rif6e"]
+[ext_resource type="FontFile" uid="uid://tphvo0i11qn0" path="res://assets/LilitaOne-Regular.ttf" id="3_4nqmc"]
+[ext_resource type="Texture2D" uid="uid://bh8tikenhhes2" path="res://assets/healthbarUnder.png" id="3_chg43"]
+[ext_resource type="Texture2D" uid="uid://dna6j1tgel1fc" path="res://assets/healthbarProgress.png" id="4_r77uv"]
+[ext_resource type="Texture2D" uid="uid://bmyaj01batj28" path="res://assets/basic black/arrow left.png" id="5_r77uv"]
+[ext_resource type="Texture2D" uid="uid://d3piakc8fa8la" path="res://assets/basic black/arrow right.png" id="6_4nqmc"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ckc44"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4nqmc"]
+texture = ExtResource("5_r77uv")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7plkq"]
+texture = ExtResource("6_4nqmc")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[node name="LevelSelect" type="Control" unique_id=1689853033]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3shnc")
+
+[node name="Background" type="NinePatchRect" parent="." unique_id=187646910]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_7plkq")
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
+
+[node name="Card" type="Panel" parent="." unique_id=1325613228]
+layout_mode = 0
+offset_left = 548.0
+offset_top = 171.0
+offset_right = 661.0
+offset_bottom = 211.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_ckc44")
+
+[node name="Ribbon" type="TextureRect" parent="Card" unique_id=1447644936]
+layout_mode = 0
+offset_left = -371.0
+offset_top = 54.0
+offset_right = 389.0
+offset_bottom = 204.0
+texture = ExtResource("2_rif6e")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Card" unique_id=1686620618]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -207.5
+offset_top = 152.99998
+offset_right = -143.5
+offset_bottom = 192.99998
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+texture_under = ExtResource("3_chg43")
+texture_progress = ExtResource("4_r77uv")
+
+[node name="BestLabel" type="Label" parent="Card" unique_id=2120896984]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -106.5
+offset_top = 198.0
+offset_right = 131.5
+offset_bottom = 253.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_4nqmc")
+theme_override_font_sizes/font_size = 47
+text = "BEST: 100%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameLabel" type="Label" parent="Card" unique_id=1115720051]
+layout_mode = 0
+offset_left = -293.0
+offset_top = 61.0
+offset_right = 311.0
+offset_bottom = 165.0
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("3_4nqmc")
+theme_override_font_sizes/font_size = 90
+text = "Its ME!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LeftButton" type="Button" parent="Card" unique_id=1557623188]
+layout_mode = 0
+offset_left = -491.0
+offset_top = 91.0
+offset_right = -381.0
+offset_bottom = 190.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_4nqmc")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_4nqmc")
+theme_override_styles/hover = SubResource("StyleBoxTexture_4nqmc")
+
+[node name="RightButton" type="Button" parent="Card" unique_id=1466037585]
+layout_mode = 0
+offset_left = 397.0
+offset_top = 89.0
+offset_right = 513.0
+offset_bottom = 190.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_7plkq")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7plkq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_7plkq")
+
+[node name="PlayButton" type="Button" parent="." unique_id=754864757]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 21.0
+offset_right = 77.0
+offset_bottom = 29.0
+text = "PLAY"
+
+[node name="BackButton" type="Button" parent="." unique_id=529729464]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 64.0
+offset_right = 161.0
+offset_bottom = 95.0
+text = "Back"
+
+[node name="PageLabel" type="Label" parent="." unique_id=1144970032]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 52.0
+offset_bottom = 35.0
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("3_4nqmc")
+theme_override_font_sizes/font_size = 40
+text = "1/3"
