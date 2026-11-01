@@ -55,13 +55,26 @@ offset_right = 661.0
 offset_bottom = 211.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_ckc44")
 
-[node name="Ribbon" type="TextureRect" parent="Card" unique_id=1447644936]
+[node name="Ribbon" type="TextureButton" parent="Card" unique_id=930107248]
 layout_mode = 0
 offset_left = -371.0
 offset_top = 54.0
 offset_right = 389.0
 offset_bottom = 204.0
-texture = ExtResource("2_rif6e")
+texture_normal = ExtResource("2_rif6e")
+
+[node name="NameLabel" type="Label" parent="Card" unique_id=1115720051]
+layout_mode = 0
+offset_left = -293.0
+offset_top = 61.0
+offset_right = 311.0
+offset_bottom = 165.0
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("3_4nqmc")
+theme_override_font_sizes/font_size = 90
+text = "Its ME!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Card" unique_id=1686620618]
 texture_filter = 1
@@ -78,6 +91,7 @@ offset_bottom = 192.99998
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(5, 5)
+mouse_filter = 2
 texture_under = ExtResource("3_chg43")
 texture_progress = ExtResource("4_r77uv")
 
@@ -99,19 +113,6 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_4nqmc")
 theme_override_font_sizes/font_size = 47
 text = "BEST: 100%"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="NameLabel" type="Label" parent="Card" unique_id=1115720051]
-layout_mode = 0
-offset_left = -293.0
-offset_top = 61.0
-offset_right = 311.0
-offset_bottom = 165.0
-theme_override_constants/outline_size = 12
-theme_override_fonts/font = ExtResource("3_4nqmc")
-theme_override_font_sizes/font_size = 90
-text = "Its ME!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -141,7 +142,7 @@ offset_left = 69.0
 offset_top = 21.0
 offset_right = 77.0
 offset_bottom = 29.0
-text = "PLAY"
+flat = true
 
 [node name="BackButton" type="Button" parent="." unique_id=529729464]
 layout_mode = 0

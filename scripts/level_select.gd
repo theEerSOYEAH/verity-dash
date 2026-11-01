@@ -21,23 +21,42 @@ var card_start_x = 0.0
 @onready var page_label = $PageLabel
 @onready var left_button = $Card/LeftButton
 @onready var right_button = $Card/RightButton
-@onready var play_button = $PlayButton
+@onready var ribbon = $Card/Ribbon
 @onready var back_button = $BackButton
+
+
+var ribbon_scale = Vector2(1, 1)
+var name_scale = Vector2(1, 1)
+var bar_scale = Vector2(5, 5)
+var best_scale = Vector2(0.5, 0.5)
 
 func _ready() -> void:
 	left_button.pressed.connect(go_left)
 	right_button.pressed.connect(go_right)
-	play_button.pressed.connect(play_level)
+	ribbon.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	back_button.pressed.connect(go_back)
+	
+	name_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	progress_bar.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	best_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	
 	
 	progress_bar.min_value = 0
 	progress_bar.max_value = 100
 	
 	await get_tree().process_frame
+	ribbon_scale = ribbon.scale
+	name_scale = name_label.scale
+	bar_scale = progress_bar.scale
+	best_scale = best_label.scale
 	card_start_x = card.position.x
-	
+
 	left_button.pivot_offset = left_button.size / 2
 	right_button.pivot_offset = right_button.size / 2
+	
+	ribbon.pressed.connect(play_level)
+	ribbon.mouse_entered.connect(ribbon_hover)
+	ribbon.mouse_exited.connect(ribbon_unhover)
 	
 	show_level()
 	background.texture = level_textures[current_index]
@@ -111,7 +130,74 @@ func change_level(direction):
 func pop_button(button):
 	var tween = create_tween()
 	tween.tween_property(button, "scale", Vector2(1.3, 1.3), 0.08)
-	tween.tween_property(button, "scale", Vector2(1.1, 1.1), 0.15)
+	tween.tween_property(button, "scale", Vector2(1, 1), 0.15)
+
+func ribbon_hover():
+	hover_ribbon()
+	hover_name()
+	hover_bar()
+	hover_best()
+
+func ribbon_unhover():
+	unhover_ribbon()
+	unhover_name()
+	unhover_bar()
+	unhover_best()
+
+func hover_ribbon():
+	ribbon.pivot_offset = ribbon.size / 2
+	
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(ribbon, "modulate", Color(1.4, 1.4, 1.4), 0.1)
+	tween.tween_property(ribbon, "scale", ribbon_scale * 1.05, 0.1)
+
+func hover_name():
+	name_label.pivot_offset = name_label.size / 2
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(name_label, "modulate", Color(1.4, 1.4, 1.4), 0.1)
+	tween.tween_property(name_label, "scale", name_scale * 1.05, 0.1)
+
+func hover_bar():
+	progress_bar.pivot_offset = progress_bar.size / 2
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(progress_bar, "modulate", Color(1.4, 1.4, 1.4), 0.1)
+	tween.tween_property(progress_bar, "scale", bar_scale * 1.05, 0.1)
+
+func hover_best():
+	best_label.pivot_offset = best_label.size / 2
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(best_label, "modulate", Color(1.4, 1.4, 1.4), 0.1)
+	tween.tween_property(best_label, "scale", best_scale * 1.05, 0.1)
+
+
+func unhover_ribbon():
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(ribbon, "modulate", Color(1, 1, 1), 0.1)
+	tween.tween_property(ribbon, "scale", ribbon_scale, 0.1)
+
+func unhover_name():
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(name_label, "modulate", Color(1, 1, 1), 0.1)
+	tween.tween_property(name_label, "scale", name_scale, 0.1)
+
+func unhover_bar():
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(progress_bar, "modulate", Color(1, 1, 1), 0.1)
+	tween.tween_property(progress_bar, "scale", bar_scale, 0.1)
+
+func unhover_best():
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(best_label, "modulate", Color(1, 1, 1), 0.1)
+	tween.tween_property(best_label, "scale", best_scale, 0.1)
+
 
 func play_level():
 	if changing == true:
@@ -122,4 +208,4 @@ func play_level():
 	SceneTransition.change_scene(level_paths[current_index])
 
 func go_back():
-	SceneTransition.change_scene("res://scenes/main.tscn")
+	SceneTransition.change_scene("res://scenes/main_menu.tscn")
