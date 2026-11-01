@@ -1,5 +1,10 @@
 # Verity Dash
 
+<img width="1366" height="768" alt="7_1" src="https://github.com/user-attachments/assets/b7ce8c2d-21be-4385-9f0d-2c7230119192" /> <img width="1364" height="768" alt="7_2" src="https://github.com/user-attachments/assets/da3a2593-e06f-4ef6-9a67-5a322ce8290b" /> <img width="1366" height="768" alt="7_3" src="https://github.com/user-attachments/assets/13f15217-7661-4a0b-be10-50acd169db4a" />
+
+
+
+
 A 2D game that is heavily inspired by Geometry Dash. Your verity keeps moving forward on its own and you have to time your jumps to get through the level without dying. If you die you start over from 0%
 
 # Where to play?
