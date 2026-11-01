@@ -4,19 +4,19 @@
 [ext_resource type="Texture2D" uid="uid://ttkomvhvewte" path="res://icon.svg" id="2_hy5sb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h621j"]
-radius = 8.062258
+radius = 12.777437
 
 [node name="JumpOrb" type="Area2D" unique_id=993930886]
-scale = Vector2(2.4261518, 2.4261518)
+scale = Vector2(1.9102491, 1.9102491)
 script = ExtResource("1_boolh")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=447468583]
-position = Vector2(8, -8)
-scale = Vector2(0.125, 0.125)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1212315451]
+position = Vector2(14, -13)
+scale = Vector2(0.203125, 0.203125)
 texture = ExtResource("2_hy5sb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=523707319]
-position = Vector2(8, -8)
+position = Vector2(14.426138, -12.777437)
 shape = SubResource("CircleShape2D_h621j")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
