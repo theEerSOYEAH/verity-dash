@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://d3ih3ycbxnn8a" path="res://scenes/attempt_counter.gd" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://crcsj4thgs7wp" path="res://scenes/jumppad.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://pb0tad2di528" path="res://scenes/jump_orb.tscn" id="8_tipki"]
-[ext_resource type="Script" uid="uid://b41g6ohts0sxy" path="res://scenes/Progress.gd" id="9_85g3d"]
+[ext_resource type="Script" uid="uid://b41g6ohts0sxy" path="res://scripts/Progress.gd" id="9_85g3d"]
 [ext_resource type="PackedScene" uid="uid://vftyuca7frrt" path="res://scenes/roll_portal.tscn" id="10_choun"]
 [ext_resource type="PackedScene" uid="uid://cmfupf6ht7voe" path="res://scenes/complete_screen.tscn" id="10_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://bh8tikenhhes2" path="res://assets/healthbarUnder.png" id="10_ya4ey"]

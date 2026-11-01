@@ -13,12 +13,12 @@
 [ext_resource type="PackedScene" uid="uid://bpfhumupkfvlq" path="res://scenes/shipportal.tscn" id="11_u3awl"]
 [ext_resource type="Script" uid="uid://dhi1rubv8e8v4" path="res://scenes/y_zone.gd" id="12_2ku1j"]
 [ext_resource type="PackedScene" uid="uid://cj8viiyqillbm" path="res://scenes/pause_menu.tscn" id="13_f31uk"]
-[ext_resource type="Script" uid="uid://b41g6ohts0sxy" path="res://scenes/Progress.gd" id="14_14jow"]
-[ext_resource type="PackedScene" uid="uid://cmfupf6ht7voe" path="res://scenes/complete_screen.tscn" id="15_mvsps"]
-[ext_resource type="Texture2D" uid="uid://bh8tikenhhes2" path="res://assets/healthbarUnder.png" id="16_jvkml"]
 [ext_resource type="FontFile" uid="uid://tphvo0i11qn0" path="res://assets/LilitaOne-Regular.ttf" id="17_3w4mx"]
+[ext_resource type="Script" uid="uid://b41g6ohts0sxy" path="res://scripts/Progress.gd" id="17_jvkml"]
+[ext_resource type="PackedScene" uid="uid://cmfupf6ht7voe" path="res://scenes/complete_screen.tscn" id="18_3w4mx"]
 [ext_resource type="Script" uid="uid://7a6rshexbv4r" path="res://scripts/finish_line.gd" id="18_mvsps"]
 [ext_resource type="Texture2D" uid="uid://3hgyrqmrxs8g" path="res://assets/869527780_1666620991570876_2337291329744437538_n-removebg-preview.png" id="19_jvkml"]
+[ext_resource type="Texture2D" uid="uid://bh8tikenhhes2" path="res://assets/healthbarUnder.png" id="19_u068y"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_h621j"]
 distance = -68.0
@@ -28,9 +28,6 @@ size = Vector2(44, 931)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nnsmj"]
 size = Vector2(19694, 509)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u068y"]
-load_path = "res://.godot/imported/healthbarProgress.png-d5c83ac6e069b837ee7269ac1313db37.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jvkml"]
 size = Vector2(16, 1453)
@@ -49,6 +46,9 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1ooyw"]
+load_path = "res://.godot/imported/healthbarProgress.png-d5c83ac6e069b837ee7269ac1313db37.ctex"
 
 [node name="main2" type="Node2D" unique_id=1218624401]
 position = Vector2(-33, -3)
@@ -7852,67 +7852,16 @@ position = Vector2(8806, -431.5)
 shape = SubResource("RectangleShape2D_nnsmj")
 
 [node name="PauseMenu" parent="." unique_id=576934438 node_paths=PackedStringArray("player") instance=ExtResource("13_f31uk")]
-visible = false
 player = NodePath("../verity")
-
-[node name="Progress" type="CanvasLayer" parent="." unique_id=537888373 node_paths=PackedStringArray("player")]
-script = ExtResource("14_14jow")
-player = NodePath("../verity")
-level_start_x = -790.0
-level_end_x = 1026.0
-
-[node name="CompleteScreen" parent="Progress" unique_id=642362803 instance=ExtResource("15_mvsps")]
-visible = false
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="Progress" unique_id=1661962454]
-texture_filter = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -176.0
-offset_right = -112.0
-offset_bottom = 10.0
-grow_horizontal = 2
-scale = Vector2(5, 5)
-texture_under = ExtResource("16_jvkml")
-texture_progress = SubResource("CompressedTexture2D_u068y")
-
-[node name="PercentLabel" type="Label" parent="Progress" unique_id=675490592]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -33.0
-offset_top = 47.0
-offset_right = 7.0
-offset_bottom = 85.0
-grow_horizontal = 2
-theme_override_constants/outline_size = 6
-theme_override_fonts/font = ExtResource("17_3w4mx")
-theme_override_font_sizes/font_size = 26
-
-[node name="BestLabel" type="Label" parent="Progress" unique_id=529841474]
-visible = false
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = 50.0
-offset_right = 20.0
-offset_bottom = 73.0
-grow_horizontal = 2
-theme_override_fonts/font = ExtResource("17_3w4mx")
-theme_override_font_sizes/font_size = 26
 
 [node name="FinishLine" type="Area2D" parent="." unique_id=1077743337]
-position = Vector2(9527, -325)
+position = Vector2(10586, -325)
 script = ExtResource("18_mvsps")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FinishLine" unique_id=1484302754]
-position = Vector2(1026, -267)
 shape = SubResource("RectangleShape2D_jvkml")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="FinishLine" unique_id=710493861]
-position = Vector2(1026, -267)
 shape = SubResource("RectangleShape2D_jvkml")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="FinishLine" unique_id=868527938]
@@ -7925,6 +7874,54 @@ one_shot = true
 position = Vector2(0, 10682)
 scale = Vector2(890.0254, 890.0254)
 sprite_frames = SubResource("SpriteFrames_e6q6n")
+
+[node name="Progress" type="CanvasLayer" parent="." unique_id=339402012 node_paths=PackedStringArray("player")]
+script = ExtResource("17_jvkml")
+player = NodePath("../verity")
+level_start_x = -790.0
+level_end_x = 10586.0
+
+[node name="CompleteScreen" parent="Progress" unique_id=642362803 instance=ExtResource("18_3w4mx")]
+visible = false
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Progress" unique_id=77530801]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -176.0
+offset_right = -112.0
+offset_bottom = 10.0
+grow_horizontal = 2
+scale = Vector2(5, 5)
+texture_under = ExtResource("19_u068y")
+texture_progress = SubResource("CompressedTexture2D_1ooyw")
+
+[node name="PercentLabel" type="Label" parent="Progress" unique_id=854046277]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -33.0
+offset_top = 47.0
+offset_right = 7.0
+offset_bottom = 85.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("17_3w4mx")
+theme_override_font_sizes/font_size = 26
+
+[node name="BestLabel" type="Label" parent="Progress" unique_id=667476128]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 50.0
+offset_right = 20.0
+offset_bottom = 73.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("17_3w4mx")
+theme_override_font_sizes/font_size = 26
 
 [connection signal="body_entered" from="followzone" to="followzone" method="_on_body_entered"]
 [connection signal="body_entered" from="y_zone" to="y_zone" method="_on_body_entered"]
