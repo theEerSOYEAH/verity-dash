@@ -103,9 +103,11 @@ func show_level():
 
 func go_left():
 	change_level(-1)
+	SoundManager.play(SoundManager.click_sound)
 
 func go_right():
 	change_level(1)
+	SoundManager.play(SoundManager.click_sound)
 	
 func change_level(direction):
 	if changing == true:
@@ -169,6 +171,7 @@ func ribbon_unhover():
 
 func hover_ribbon():
 	grow(ribbon, 1.05)
+	SoundManager.play(SoundManager.hover_sound, -12)
 
 func hover_name():
 	grow(name_label, 1.05)
@@ -197,6 +200,7 @@ func hover_left():
 	tween.set_parallel(true)
 	tween.tween_property(left_button, "scale", Vector2(1.15, 1.15), 0.1)
 	tween.tween_property(left_button, "modulate", Color(1.4, 1.4, 1.4), 0.1)
+	SoundManager.play(SoundManager.hover_sound, -12)
 
 func unhover_left():
 	var tween = create_tween()
@@ -209,6 +213,7 @@ func hover_right():
 	tween.set_parallel(true)
 	tween.tween_property(right_button, "scale", Vector2(1.15, 1.15), 0.1)
 	tween.tween_property(right_button, "modulate", Color(1.4, 1.4, 1.4), 0.1)
+	SoundManager.play(SoundManager.hover_sound, -12)
 
 func unhover_right():
 	var tween = create_tween()
@@ -221,6 +226,7 @@ func hover_back():
 	tween.set_parallel(true)
 	tween.tween_property(back_sprite, "scale", Vector2(1.15, 1.15), 0.1)
 	tween.tween_property(back_sprite, "modulate", Color(1.4, 1.4, 1.4), 0.1)
+	SoundManager.play(SoundManager.hover_sound, -12)
 
 func unhover_back():
 	var tween = create_tween()
@@ -248,9 +254,11 @@ func play_level():
 	if changing == true:
 		return
 	
+	SoundManager.play(SoundManager.click_sound)
 	GameManager.current_level = level_ids[current_index]
 	GameManager.attempts = 1
 	SceneTransition.change_scene(level_paths[current_index])
 
 func go_back():
+	SoundManager.play(SoundManager.click_sound)
 	SceneTransition.change_scene("res://scenes/main_menu.tscn")
