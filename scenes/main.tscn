@@ -9,9 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://crcsj4thgs7wp" path="res://scenes/jumppad.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://pb0tad2di528" path="res://scenes/jump_orb.tscn" id="8_tipki"]
 [ext_resource type="Script" uid="uid://b41g6ohts0sxy" path="res://scenes/Progress.gd" id="9_85g3d"]
+[ext_resource type="PackedScene" uid="uid://vftyuca7frrt" path="res://scenes/roll_portal.tscn" id="10_choun"]
 [ext_resource type="PackedScene" uid="uid://cmfupf6ht7voe" path="res://scenes/complete_screen.tscn" id="10_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://bh8tikenhhes2" path="res://assets/healthbarUnder.png" id="10_ya4ey"]
 [ext_resource type="FontFile" uid="uid://tphvo0i11qn0" path="res://assets/LilitaOne-Regular.ttf" id="11_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://cb2nog1pd1qej" path="res://scenes/wave_portal.tscn" id="12_eb6dy"]
 [ext_resource type="Script" uid="uid://7a6rshexbv4r" path="res://scripts/finish_line.gd" id="13_trceg"]
 [ext_resource type="PackedScene" uid="uid://cj8viiyqillbm" path="res://scenes/pause_menu.tscn" id="14_a8y0u"]
 
@@ -35,10 +37,10 @@ scale = Vector2(0.6421569, 0.98019564)
 script = ExtResource("1_0wfyh")
 player_path = NodePath("../verity")
 player_offset_x = 0.0
-margin_x = 400.0
 
 [node name="verity" parent="." unique_id=1912265165 instance=ExtResource("1_o5qli")]
 position = Vector2(-790.27, -66)
+scale = Vector2(1.655458, 1.655458)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=806101187]
 
@@ -46,29 +48,12 @@ position = Vector2(-790.27, -66)
 position = Vector2(112, -67)
 shape = SubResource("WorldBoundaryShape2D_h621j")
 
-[node name="Icon" type="Sprite2D" parent="StaticBody2D" unique_id=33782864]
-position = Vector2(231, -74)
-texture = ExtResource("3_sugp2")
-
 [node name="Icon2" type="Sprite2D" parent="StaticBody2D" unique_id=1721939767]
 position = Vector2(581, -71)
 texture = ExtResource("3_sugp2")
 
 [node name="Icon3" type="Sprite2D" parent="StaticBody2D" unique_id=753630371]
 position = Vector2(939, -61)
-texture = ExtResource("3_sugp2")
-
-[node name="Icon" type="Sprite2D" parent="." unique_id=1456876738]
-position = Vector2(-864, -66)
-texture = ExtResource("3_sugp2")
-
-[node name="Icon2" type="Sprite2D" parent="." unique_id=2057111875]
-position = Vector2(-576, -63)
-texture = ExtResource("3_sugp2")
-
-[node name="Icon3" type="Sprite2D" parent="." unique_id=1014680710]
-position = Vector2(-156, -68)
-scale = Vector2(0.7599994, 2.4)
 texture = ExtResource("3_sugp2")
 
 [node name="followzone" type="Area2D" parent="." unique_id=1420533061]
@@ -80,11 +65,11 @@ camera_path = NodePath("../Camera2D")
 position = Vector2(-250, -321)
 shape = SubResource("RectangleShape2D_h621j")
 
-[node name="spike" parent="." unique_id=530794688 instance=ExtResource("5_tbgi4")]
-position = Vector2(-423, 1)
+[node name="spike3" parent="." unique_id=777752238 instance=ExtResource("5_tbgi4")]
+position = Vector2(2086, -31)
 
-[node name="spike2" parent="." unique_id=519102702 instance=ExtResource("5_tbgi4")]
-position = Vector2(-107, 1)
+[node name="spike4" parent="." unique_id=41994693 instance=ExtResource("5_tbgi4")]
+position = Vector2(2116, -31)
 
 [node name="attempt counter" type="Label" parent="." unique_id=330295039]
 offset_left = -704.0
@@ -105,6 +90,12 @@ position = Vector2(665, -66)
 
 [node name="JumpOrb3" parent="." unique_id=2030022090 instance=ExtResource("8_tipki")]
 position = Vector2(423, -59)
+
+[node name="roll portal" parent="." unique_id=507980086 instance=ExtResource("10_choun")]
+position = Vector2(1212, -1)
+
+[node name="wave portal" parent="." unique_id=1986563813 instance=ExtResource("12_eb6dy")]
+position = Vector2(2438, 2)
 
 [node name="Progress" type="CanvasLayer" parent="." unique_id=1544467001 node_paths=PackedStringArray("player")]
 visible = false
