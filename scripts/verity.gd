@@ -5,6 +5,8 @@ const T = 250
 const MUSIC_FADE_TIME = 0.4
 @onready var explosion: AnimatedSprite2D = $explosion
 
+const WAVE_ANGLE_PRESSED = -30
+const WAVE_ANGLE_RELEASED = 110
 
 const JUMP_BUFFER_TIME = 0.12
 var jump_buffer_timer = 0.0
@@ -29,10 +31,35 @@ enum Mode { ROLL, SHIP, WAVE }
 var mode : Mode = Mode.ROLL
 
 
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var roll: AnimatedSprite2D = $roll
+@onready var plane_1: AnimatedSprite2D = $plane1
+@onready var plane_2: AnimatedSprite2D = $plane2
+@onready var wave_1: AnimatedSprite2D = $wave1
+@onready var wave_2: AnimatedSprite2D = $wave2
+
 
 var dead := false
 var finishe = false
+
+func _ready() -> void:
+	update_sprites()
+
+
+func update_sprites():
+	roll.visible = mode == Mode.ROLL
+	plane_1.visible = mode == Mode.SHIP
+	plane_2.visible = mode == Mode.SHIP
+	wave_1.visible = mode == Mode.WAVE
+	#wave_2.visible = mode == Mode.WAVE
+
+
+func activate_sprites():
+	match mode:
+		Mode.SHIP: return [plane_1, plane_2]
+		Mode.WAVE: return [wave_1, wave_2]
+	return[roll]
+
+
 
 
 func _physics_process(delta: float) -> void:
@@ -69,7 +96,7 @@ func _roll_physics(delta: float):
 	else:
 		coyote_timer = COYOTE_TIME
 	
-	sprite.rotation += ROLL_SPEED * delta
+	roll.rotation += ROLL_SPEED * delta
 	
 	if Input.is_action_just_pressed("ui_accept"):
 		jump_buffer_timer = JUMP_BUFFER_TIME
@@ -91,25 +118,27 @@ func _ship_physics(delta : float):
 	else:
 		velocity.y += SHIP_GRAVITY * delta
 		
-		velocity.y = clamp(velocity.y, SHIP_MAX_RISE, SHIP_MAX_FALL)
-		
-		var target_angle = atan2(velocity.y, SPEED)
-		sprite.rotation = lerp_angle(sprite.rotation, target_angle, 10.0 * delta)
-		
+	velocity.y = clamp(velocity.y, SHIP_MAX_RISE, SHIP_MAX_FALL)
+	
+	var target_angle = atan2(velocity.y, SPEED)
+	plane_1.rotation = lerp_angle(plane_1.rotation, target_angle, 10.0 * delta)
+	plane_2.rotation = lerp_angle(plane_2.rotation, target_angle, 10.0 * delta)
+	
 
 func _wave_physics():
-	var dir = -1.0 if Input.is_action_pressed("ui_accept") else 1.0
+	var pressing = Input.is_action_pressed("ui_accept")
+	var dir = -1.0 if pressing else 1.0
 	velocity.y = dir * SPEED * WAVE_Y_MULT
 	
-	sprite.rotation = atan2(velocity.y, SPEED)
-
+	wave_1.rotation = WAVE_ANGLE_PRESSED if pressing else WAVE_ANGLE_RELEASED
+	#wave_2.rotation = atan2(velocity.y, SPEED)
 
 
 func set_mode(new_mode :int):
 	mode = new_mode as Mode
 	velocity.y = 0.0
-	if mode == Mode.ROLL:
-		sprite.rotation = 0.0
+	roll.rotation = 0.0
+	update_sprites()
 
 func die():
 	if dead or finishe:
@@ -121,7 +150,10 @@ func die():
 	fade_out_music()
 	
 	$explosionsound.play()
-	sprite.visible = false
+	roll.visible = false
+	plane_1.visible = false
+	plane_2.visible = false
+	wave_1.visible = false
 	explosion.visible = true
 	explosion.play("default")
 	await explosion.animation_finished
@@ -145,6 +177,6 @@ func finish_level():
 	tween.tween_property(self, "position:y", position.y - 300, 1.0) \
 		.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "scale", Vector2(0.1, 0.1), 1.0)
-	tween.tween_property(sprite, "rotation", sprite.rotation + 12.0, 1.0)
-	tween.tween_property(sprite, "modulate:a", 0.0, 1.0)
+	tween.tween_property(roll, "rotation", roll.rotation + 12.0, 1.0)
+	tween.tween_property(roll, "modulate:a", 0.0, 1.0)
 	
