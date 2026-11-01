@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://bftocflcmix5v"]
+
+[ext_resource type="Texture2D" uid="uid://da60um408go7s" path="res://assets/basic black/button square hover.png" id="1_bqqt6"]
+[ext_resource type="Script" uid="uid://cj4gbg2m6bhj8" path="res://scripts/main_menu.gd" id="1_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://bwtt4yya0ju0p" path="res://assets/basic black/button square idle.png" id="2_wu84c"]
+[ext_resource type="Texture2D" uid="uid://curmp6qwwukrx" path="res://assets/basic black/button square clicked.png" id="3_8ln24"]
+[ext_resource type="FontFile" uid="uid://tphvo0i11qn0" path="res://assets/LilitaOne-Regular.ttf" id="4_wu84c"]
+[ext_resource type="Texture2D" uid="uid://co1urdc3rldo1" path="res://assets/basic black/ribbon.png" id="5_8ln24"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e6q6n"]
+texture = ExtResource("2_wu84c")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3gb63"]
+texture = ExtResource("3_8ln24")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hg1o6"]
+texture = ExtResource("1_bqqt6")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wu84c"]
+texture = ExtResource("2_wu84c")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8ln24"]
+texture = ExtResource("3_8ln24")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rtw2f"]
+texture = ExtResource("1_bqqt6")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+
+[node name="MainMenu" type="CanvasLayer" unique_id=271793049]
+script = ExtResource("1_rtw2f")
+
+[node name="background" type="NinePatchRect" parent="." unique_id=725156996]
+offset_left = -7.0
+offset_top = -6.0
+offset_right = 1159.0
+offset_bottom = 653.0
+texture = ExtResource("1_bqqt6")
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
+
+[node name="PlayButton" type="Button" parent="." unique_id=1735222874]
+offset_left = 390.0
+offset_top = 242.0
+offset_right = 722.0
+offset_bottom = 332.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_e6q6n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_3gb63")
+theme_override_styles/hover = SubResource("StyleBoxTexture_hg1o6")
+
+[node name="Label" type="Label" parent="PlayButton" unique_id=1597810154]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 12.0
+offset_right = 320.0
+offset_bottom = 79.0
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("4_wu84c")
+theme_override_font_sizes/font_size = 58
+text = "PLAY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuitButton" type="Button" parent="." unique_id=1367747028]
+offset_left = 390.0
+offset_top = 337.0
+offset_right = 722.0
+offset_bottom = 427.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_wu84c")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_8ln24")
+theme_override_styles/hover = SubResource("StyleBoxTexture_rtw2f")
+
+[node name="Label" type="Label" parent="QuitButton" unique_id=826660519]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 12.0
+offset_right = 320.0
+offset_bottom = 79.0
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("4_wu84c")
+theme_override_font_sizes/font_size = 58
+text = "QUIT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title" type="NinePatchRect" parent="." unique_id=595334280]
+offset_left = 250.0
+offset_top = 95.0
+offset_right = 852.0
+offset_bottom = 219.0
+texture = ExtResource("5_8ln24")
+
+[node name="Label" type="Label" parent="Title" unique_id=95028689]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 10.0
+offset_right = 528.0
+offset_bottom = 93.0
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("4_wu84c")
+theme_override_font_sizes/font_size = 72
+text = "VERIY DASH"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
