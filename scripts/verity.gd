@@ -42,6 +42,11 @@ var dead := false
 var finishe = false
 
 func _ready() -> void:
+	var index = GameManager.skin_ids.find(GameManager.selected_skin)
+	if index != -1:
+		var frames = load(GameManager.skin_paths[index])
+		roll.sprite_frames = frames
+		roll.play(frames.get_animation_names()[0])
 	update_sprites()
 
 
