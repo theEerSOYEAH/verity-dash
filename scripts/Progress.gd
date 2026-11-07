@@ -37,6 +37,8 @@ func _process(delta: float) -> void:
 	if player.finishe == true:
 		percent = 100
 	
+	GameManager.run_points = 0
+	
 	progress_bar.value = percent
 	percent_label.text = str(int(percent)) + "%"
 	
