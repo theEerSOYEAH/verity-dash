@@ -75,6 +75,7 @@ patch_margin_right = 24
 patch_margin_bottom = 24
 
 [node name="Card" type="Panel" parent="." unique_id=139566573]
+clip_contents = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -89,7 +90,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_m4ofw")
 
-[node name="Preview" type="TextureRect" parent="Card" unique_id=27590243]
+[node name="Content" type="Control" parent="Card" unique_id=842756904]
+anchors_preset = 0
+offset_right = 600.0
+offset_bottom = 369.0
+
+[node name="Preview" type="TextureRect" parent="Card/Content" unique_id=27590243]
 layout_mode = 0
 offset_left = 191.0
 offset_top = 81.0
@@ -98,30 +104,42 @@ offset_bottom = 281.0
 expand_mode = 1
 stretch_mode = 5
 
-[node name="NameLabel" type="Label" parent="Card" unique_id=320741986]
+[node name="PageLabel" type="Label" parent="Card/Content" unique_id=990331410]
 layout_mode = 0
-offset_left = 214.0
-offset_top = -19.0
-offset_right = 374.0
-offset_bottom = 67.0
-theme_override_constants/outline_size = 4
+offset_left = 16.0
+offset_top = 14.5
+offset_right = 87.0
+offset_bottom = 59.5
+theme_override_constants/line_spacing = 3
+theme_override_constants/outline_size = 6
 theme_override_fonts/font = ExtResource("3_m4ofw")
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxTexture_heatd")
-horizontal_alignment = 1
-vertical_alignment = 1
+theme_override_font_sizes/font_size = 38
+text = "1 / 3"
 
-[node name="PriceLabel" type="Label" parent="Card" unique_id=950721931]
+[node name="PriceLabel" type="Label" parent="." unique_id=950721931]
 z_index = 1
 layout_mode = 0
-offset_left = 262.0
-offset_top = 359.5
-offset_right = 336.0
-offset_bottom = 387.5
+offset_left = 538.0
+offset_top = 499.0
+offset_right = 612.0
+offset_bottom = 527.0
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("3_m4ofw")
 theme_override_font_sizes/font_size = 18
 text = "150 PTS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameLabel" type="Label" parent="." unique_id=320741986]
+layout_mode = 0
+offset_left = 490.0
+offset_top = 120.5
+offset_right = 650.0
+offset_bottom = 206.5
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_m4ofw")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_heatd")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -162,31 +180,26 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 23.0
+offset_left = -1139.0
+offset_top = 16.0
+offset_right = -868.0
+offset_bottom = 65.0
 grow_horizontal = 0
-
-[node name="PageLabel" type="Label" parent="." unique_id=990331410]
-layout_mode = 0
-offset_left = 15.0
-offset_top = 15.0
-offset_right = 55.0
-offset_bottom = 38.0
-theme_override_constants/line_spacing = 3
-theme_override_constants/outline_size = 6
+theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("3_m4ofw")
-theme_override_font_sizes/font_size = 38
-text = "1 / 3"
+theme_override_font_sizes/font_size = 42
+text = "POINTS :  1500"
+vertical_alignment = 1
 
 [node name="BackButton" type="Button" parent="." unique_id=958349793]
 layout_mode = 0
 offset_left = 21.0
-offset_top = 62.0
+offset_top = 76.0
 offset_right = 77.0
-offset_bottom = 120.0
+offset_bottom = 134.0
 flat = true
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=959028696]
-position = Vector2(49, 91)
+[node name="Sprite2D" type="Sprite2D" parent="BackButton" unique_id=959028696]
+position = Vector2(28, 29)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("9_m4ofw")

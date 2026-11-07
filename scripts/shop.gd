@@ -2,19 +2,20 @@ extends Control
 
 var current_index = 0
 
-@onready var preview = $Card/Preview
-@onready var name_label = $Card/NameLabel
-@onready var price_label = $Card/PriceLabel
+@onready var preview = $Card/Content/Preview
+@onready var name_label = $NameLabel
+@onready var price_label = $PriceLabel
 @onready var left_button = $LeftButton
 @onready var right_button = $RightButton
 @onready var action_button = $ActionButton
 @onready var points_label = $PointsLabel
-@onready var page_label = $PageLabel
+@onready var page_label = $Card/Content/PageLabel
 @onready var back_button = $BackButton
 @onready var card = $Card
+@onready var content = $Card/Content
 
 var changing = false
-var card_start_x = 0.0
+var content_start_x = 0.0
 
 func _ready() -> void:
 		left_button.pressed.connect(go_left)
@@ -34,7 +35,7 @@ func _ready() -> void:
 			button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 		
 		await get_tree().process_frame
-		card_start_x = card.position.x
+		content_start_x = content.position.x
 		for button in [left_button, right_button, action_button, back_button]:
 			button.pivot_offset = button.size / 2
 
@@ -111,32 +112,32 @@ func go_right():
 func change_skin(direction):
 	if changing == true:
 		return
-	changing == true
+	changing = true
 	
 	var new_index = current_index + direction
 	if new_index < 0:
 		new_index = GameManager.skin_ids.size() - 1
-	if new_index>= GameManager.skin_ids.size():
+	if new_index >= GameManager.skin_ids.size():
 		new_index = 0
+		
+	var slide_distance = card.size.x
 	
-	var screen_width = get_viewport_rect().size.x
-	
-	var tween_1 = create_tween()
-	tween_1.set_parallel(true)
-	tween_1.tween_property(card, "position:x", card_start_x - direction * screen_width, 0.2)
-	tween_1.tween_property(card, "modulate:a", 0.0, 0.2)
-	await tween_1.finished
+	var tween1 = create_tween()
+	tween1.set_parallel(true)
+	tween1.tween_property(content, "position:x", content_start_x - direction * slide_distance, 0.2)
+	tween1.tween_property(content, "modulate:a", 0.0, 0.2 )
+	await tween1.finished
 	
 	current_index = new_index
 	show_skin()
 	
-	card.position.x = card_start_x + direction* screen_width
+	content.position.x = content_start_x + direction * slide_distance
 	
-	var tween_2 = create_tween()
-	tween_2.set_parallel(true)
-	tween_2.tween_property(card, "position:x", card_start_x, 0.3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	tween_2.tween_property(card, "modulate:a", 1.0, 0.3)
-	await tween_2.finished
+	var tween2 = create_tween()
+	tween2.set_parallel(true)
+	tween2.tween_property(content, "position:x", content_start_x, 0.3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween2.tween_property(content, "modulate:a", 1.0, 0.3)
+	await tween2.finished
 	
 	changing = false
 	
