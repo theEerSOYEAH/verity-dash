@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ii0m2djkmoff" path="res://scripts/verity.gd" id="1_6kb7q"]
 [ext_resource type="Texture2D" uid="uid://cacbaeodqf3h2" path="res://assets/verity-removebg-preview.png" id="2_05v41"]
+[ext_resource type="SpriteFrames" uid="uid://cf3d413txeom2" path="res://skins/verity.tres" id="2_iqtp8"]
 [ext_resource type="Texture2D" uid="uid://bl18uk4id0pfg" path="res://assets/explosion tutorial files/explosion.png" id="3_05v41"]
 [ext_resource type="Texture2D" uid="uid://c8c1ilk5hpftw" path="res://assets/plane-removebg-preview.png" id="4_iqtp8"]
 [ext_resource type="Texture2D" uid="uid://db1ryl88aecdq" path="res://assets/870281380_1492313576338034_3321580411302061323_n-removebg-preview.png" id="5_qq1xj"]
@@ -10,7 +11,7 @@
 atlas = ExtResource("2_05v41")
 region = Rect2(0, 0, 487, 512)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_h621j"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_qq1xj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -133,8 +134,7 @@ script = ExtResource("1_6kb7q")
 visible = false
 position = Vector2(7.1054274e-15, 1)
 scale = Vector2(0.11550309, 0.115503095)
-sprite_frames = SubResource("SpriteFrames_h621j")
-frame_progress = 0.17878954
+sprite_frames = SubResource("SpriteFrames_qq1xj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=133025736]
 shape = SubResource("CircleShape2D_h621j")
@@ -158,7 +158,7 @@ sprite_frames = SubResource("SpriteFrames_nnsmj")
 visible = false
 position = Vector2(2.6181126, -1.7711648)
 scale = Vector2(0.05402939, 0.054029398)
-sprite_frames = SubResource("SpriteFrames_h621j")
+sprite_frames = ExtResource("2_iqtp8")
 frame_progress = 0.17878954
 
 [node name="wave1" type="AnimatedSprite2D" parent="." unique_id=1951817706]
