@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dc4jx8sbjn14y"]
+
+[ext_resource type="Texture2D" uid="uid://cacbaeodqf3h2" path="res://assets/verity-removebg-preview.png" id="1_4l186"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hlnv"]
+atlas = ExtResource("1_4l186")
+region = Rect2(0, 0, 487, 512)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hlnv")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
