@@ -53,7 +53,11 @@ func load_game():
 	if config.has_section("best"):
 		for id in config.get_section_keys("best"):
 			best_percents[id] = config.get_value("best", id)
-
+	
+	points = config.get_value("shop", "points", 0)
+	owned_skins = config.get_value("shop", "owned", ["verity"])
+	selected_skin = config.get_value("shop", "selected", "verity")
+	
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		save_game()
