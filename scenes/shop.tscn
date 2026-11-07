@@ -1,0 +1,192 @@
+[gd_scene format=3 uid="uid://ck8jpwnvw1ech"]
+
+[ext_resource type="Script" uid="uid://bn8tlxjctxxwt" path="res://scripts/shop.gd" id="1_8r1wq"]
+[ext_resource type="Texture2D" uid="uid://bmyaj01batj28" path="res://assets/basic black/arrow left.png" id="2_ajxib"]
+[ext_resource type="Texture2D" uid="uid://bwtt4yya0ju0p" path="res://assets/basic black/button square idle.png" id="2_y6sft"]
+[ext_resource type="FontFile" uid="uid://tphvo0i11qn0" path="res://assets/LilitaOne-Regular.ttf" id="3_m4ofw"]
+[ext_resource type="Texture2D" uid="uid://d3piakc8fa8la" path="res://assets/basic black/arrow right.png" id="3_y6sft"]
+[ext_resource type="Texture2D" uid="uid://1wumuw38fq43" path="res://assets/basic black/button wide idle.png" id="4_m4ofw"]
+[ext_resource type="Texture2D" uid="uid://v02dueasdo5a" path="res://assets/basic black/button wide clicked.png" id="5_heatd"]
+[ext_resource type="Texture2D" uid="uid://dyqq0m24aqphn" path="res://assets/basic black/button wide hover.png" id="6_1v8qu"]
+[ext_resource type="Texture2D" uid="uid://b4glf2ricj3m8" path="res://assets/basic black/icons home.png" id="9_m4ofw"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m4ofw"]
+texture = ExtResource("2_y6sft")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_heatd"]
+texture = ExtResource("2_y6sft")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wp5od"]
+texture = ExtResource("4_m4ofw")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k56px"]
+texture = ExtResource("5_heatd")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vkdpk"]
+texture = ExtResource("6_1v8qu")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1v8qu"]
+texture = ExtResource("4_m4ofw")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+
+[node name="Shop" type="Control" unique_id=1418819348]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8r1wq")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1751513023]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_y6sft")
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
+
+[node name="Card" type="Panel" parent="." unique_id=139566573]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -184.5
+offset_right = 300.0
+offset_bottom = 184.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_m4ofw")
+
+[node name="Preview" type="TextureRect" parent="Card" unique_id=27590243]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 81.0
+offset_right = 391.0
+offset_bottom = 281.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="Card" unique_id=320741986]
+layout_mode = 0
+offset_left = 214.0
+offset_top = -19.0
+offset_right = 374.0
+offset_bottom = 67.0
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_m4ofw")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_heatd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PriceLabel" type="Label" parent="Card" unique_id=950721931]
+z_index = 1
+layout_mode = 0
+offset_left = 262.0
+offset_top = 359.5
+offset_right = 336.0
+offset_bottom = 387.5
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_m4ofw")
+theme_override_font_sizes/font_size = 18
+text = "150 PTS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LeftButton" type="TextureButton" parent="." unique_id=1352736072]
+layout_mode = 0
+offset_left = 165.0
+offset_top = 247.0
+offset_right = 265.0
+offset_bottom = 367.0
+texture_normal = ExtResource("2_ajxib")
+
+[node name="RightButton" type="TextureButton" parent="." unique_id=995271127]
+layout_mode = 0
+offset_left = 885.0
+offset_top = 249.0
+offset_right = 985.0
+offset_bottom = 369.0
+texture_normal = ExtResource("3_y6sft")
+
+[node name="ActionButton" type="Button" parent="." unique_id=853204193]
+layout_mode = 0
+offset_left = 387.0
+offset_top = 436.0
+offset_right = 766.0
+offset_bottom = 540.0
+theme_override_constants/outline_size = 6
+theme_override_constants/line_spacing = 2
+theme_override_fonts/font = ExtResource("3_m4ofw")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxTexture_wp5od")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_k56px")
+theme_override_styles/hover = SubResource("StyleBoxTexture_vkdpk")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_1v8qu")
+text = "BUY"
+
+[node name="PointsLabel" type="Label" parent="." unique_id=771991813]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+
+[node name="PageLabel" type="Label" parent="." unique_id=990331410]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 55.0
+offset_bottom = 38.0
+theme_override_constants/line_spacing = 3
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("3_m4ofw")
+theme_override_font_sizes/font_size = 38
+text = "1 / 3"
+
+[node name="BackButton" type="Button" parent="." unique_id=958349793]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 62.0
+offset_right = 77.0
+offset_bottom = 120.0
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=959028696]
+position = Vector2(49, 91)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("9_m4ofw")
