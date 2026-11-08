@@ -15,20 +15,48 @@ var paths = [
 	
 ]
 
-var offsets = [
-	Vector2(20,-17),
-	Vector2(0, 0),
-	Vector2(0, 0),
-	Vector2(0,0),
-	Vector2(0,0),
-	Vector2(0,0)
-]
+var offset_cache = {}
 
 func get_offset(id):
-	var i = ids.find(id)
-	if i == -1 or i >= offsets.size():
+	if id in offset_cache:
+		return offset_cache[id]
+	var result = calculate_offset(id)
+	offset_cache[id] = result
+	return result
+
+func calculate_offset(id):
+	var node = make(id)
+	if node == null:
 		return Vector2.ZERO
-	return offsets[i]
+	
+	node.position = Vector2.ZERO
+	node.rotation = 0
+	
+	var shape = find_shape(node)
+	var result = Vector2.ZERO
+	
+	if shape != null:
+		var t = Transform2D.IDENTITY
+		var n = shape
+		while n != null:
+			t = n.transform * t
+			if n == node:
+				break
+			n = n.get_parent()
+		result = t.origin
+	
+	node.free()
+	return result
+
+
+func find_shape(node):
+	if node is CollisionShape2D:
+		return node
+	for child in node.get_children():
+		var found = find_shape(child)
+		if found != null:
+			return found
+	return null
 
 func place_position(id, cell, rot_deg):
 	var center = cell_to_position(cell)
