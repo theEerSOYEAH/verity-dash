@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://vnwt6hgjis0"]
+
+[ext_resource type="Script" uid="uid://dlrmey5faih68" path="res://dashorb.gd" id="1_e5510"]
+[ext_resource type="Texture2D" uid="uid://beihf2cwr7488" path="res://assets/image-removebg-preview (1).png" id="2_j7gc8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wn7xv"]
+atlas = ExtResource("2_j7gc8")
+region = Rect2(0, 0, 422, 592)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h621j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wn7xv")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h621j"]
+radius = 24.020824
+
+[node name="dashorb" type="Area2D" unique_id=1455354422]
+script = ExtResource("1_e5510")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=881726653]
+position = Vector2(3, -5)
+scale = Vector2(0.15876782, 0.15876782)
+sprite_frames = SubResource("SpriteFrames_h621j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=356957955]
+position = Vector2(2, -3)
+shape = SubResource("CircleShape2D_h621j")
