@@ -25,6 +25,7 @@ radius = 14.134281
 [node name="JumpOrb" type="Area2D" unique_id=993930886]
 scale = Vector2(1.9102491, 1.9102491)
 script = ExtResource("1_boolh")
+ring_radius = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1212315451]
 visible = false
@@ -33,12 +34,12 @@ scale = Vector2(0.203125, 0.203125)
 texture = ExtResource("2_hy5sb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=142818114]
-position = Vector2(15.286863, -6.4596205)
+position = Vector2(0.105597556, 6.627679)
 scale = Vector2(0.09477863, 0.098605186)
 sprite_frames = SubResource("SpriteFrames_h621j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=523707319]
-position = Vector2(15.286863, -13.265017)
+position = Vector2(0.10559571, -0.17771697)
 scale = Vector2(0.8750235, 0.9103514)
 shape = SubResource("CircleShape2D_h621j")
 
