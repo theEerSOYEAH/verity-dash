@@ -23,6 +23,7 @@ var target_y = 0.0
 var following = false
 
 func _ready() -> void:
+	
 	add_to_group("camera")
 	process_callback = $".".CAMERA2D_PROCESS_PHYSICS
 	process_physics_priority = 100
@@ -30,8 +31,15 @@ func _ready() -> void:
 	global_position.y = player.global_position.y  - y_offset()
 	target_y = global_position.y
 
-func start_following():
-	following = true
+
+func snap_to_player():
+	if player == null:
+		return
+	var p = player.global_position
+	global_position.x = p.x - player_offset_x
+	global_position.y = p.y - y_offset()
+	target_y = global_position.y
+
 
 func y_offset():
 	var half_y = get_viewport_rect().size.y / 2 / zoom.y
@@ -39,6 +47,10 @@ func y_offset():
 
 func set_y_lock(value: bool):
 	y_locked = value
+
+func start_following():
+	following = true
+	get_tree().call_group("background", "start_following")
 
 func _physics_process(delta: float) -> void:
 	if player == null:
