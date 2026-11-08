@@ -15,6 +15,10 @@ var paths = [
 	
 ]
 
+var play_level_name = ""
+var editor_level_name = ""
+var playtesting = false
+
 var use_picture = ["spike", "jump_pad", "portal_ship", "finish"]
 var offset_cache = {}
 

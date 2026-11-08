@@ -1,0 +1,180 @@
+[gd_scene format=3 uid="uid://csmjyf5wdgkr1"]
+
+[ext_resource type="Script" uid="uid://bu1a6kkwl3la5" path="res://scripts/custom_level.gd" id="1_b4bh4"]
+[ext_resource type="Script" uid="uid://bj0e1wpmtol0" path="res://scenes/camera_2d.gd" id="1_cwhnv"]
+[ext_resource type="PackedScene" uid="uid://b2f2fmaq3pt4n" path="res://scenes/verity.tscn" id="2_g56me"]
+[ext_resource type="AudioStream" uid="uid://dj2wo7pftnwlo" path="res://assets/[KARAOKE] Its me, Its Verity - Horror Skunx (official song).mp3" id="3_jwdr3"]
+[ext_resource type="AudioStream" uid="uid://c0r7xbtjb4v3k" path="res://assets/BOOM sound effect.mp3" id="4_q803v"]
+[ext_resource type="Script" uid="uid://dnb1arrh01mma" path="res://scenes/followzone.gd" id="5_fxxvn"]
+[ext_resource type="FontFile" uid="uid://tphvo0i11qn0" path="res://assets/LilitaOne-Regular.ttf" id="6_b85hj"]
+[ext_resource type="Script" uid="uid://d3ih3ycbxnn8a" path="res://scenes/attempt_counter.gd" id="7_r0ciy"]
+[ext_resource type="Script" uid="uid://dhi1rubv8e8v4" path="res://scenes/y_zone.gd" id="13_kgwq8"]
+[ext_resource type="PackedScene" uid="uid://cj8viiyqillbm" path="res://scenes/pause_menu.tscn" id="14_nw5ve"]
+[ext_resource type="Texture2D" uid="uid://3hgyrqmrxs8g" path="res://assets/869527780_1666620991570876_2337291329744437538_n-removebg-preview.png" id="16_bjd46"]
+[ext_resource type="Script" uid="uid://b41g6ohts0sxy" path="res://scripts/Progress.gd" id="17_bmycd"]
+[ext_resource type="PackedScene" uid="uid://cmfupf6ht7voe" path="res://scenes/complete_screen.tscn" id="18_2s4sb"]
+[ext_resource type="Texture2D" uid="uid://bh8tikenhhes2" path="res://assets/healthbarUnder.png" id="19_o6oxc"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_h621j"]
+distance = -68.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h621j"]
+size = Vector2(44, 931)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nnsmj"]
+size = Vector2(19694, 509)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3w4mx"]
+atlas = ExtResource("16_bjd46")
+region = Rect2(0, 264, 422, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e6q6n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3w4mx")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1ooyw"]
+load_path = "res://.godot/imported/healthbarProgress.png-d5c83ac6e069b837ee7269ac1313db37.ctex"
+
+[node name="main2" type="Node2D" unique_id=1218624401]
+position = Vector2(-33, -3)
+script = ExtResource("1_b4bh4")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1562832897]
+position = Vector2(-276, -66)
+scale = Vector2(0.6421569, 0.98019564)
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+script = ExtResource("1_cwhnv")
+player_path = NodePath("../verity")
+player_offset_x = 0.0
+
+[node name="verity" parent="." unique_id=1912265165 instance=ExtResource("2_g56me")]
+position = Vector2(-790, -66)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="verity" unique_id=1364961920 groups=["music"]]
+position = Vector2(0.6042156, 0)
+scale = Vector2(0.6042296, 0.6042296)
+stream = ExtResource("3_jwdr3")
+autoplay = true
+
+[node name="Timer" type="Timer" parent="verity" unique_id=1075758344]
+wait_time = 0.5
+one_shot = true
+
+[node name="explosionsound" type="AudioStreamPlayer2D" parent="verity" unique_id=787280350]
+stream = ExtResource("4_q803v")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=806101187]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=260444668]
+position = Vector2(112, -67)
+shape = SubResource("WorldBoundaryShape2D_h621j")
+
+[node name="followzone" type="Area2D" parent="." unique_id=1420533061]
+position = Vector2(-3, -5)
+script = ExtResource("5_fxxvn")
+camera_path = NodePath("../Camera2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="followzone" unique_id=670776462]
+position = Vector2(-250, -321)
+shape = SubResource("RectangleShape2D_h621j")
+
+[node name="attempt counter" type="Label" parent="." unique_id=330295039]
+offset_left = -704.0
+offset_top = -159.0
+offset_right = -456.0
+offset_bottom = -136.0
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("6_b85hj")
+theme_override_font_sizes/font_size = 22
+text = "attempt mumba 0"
+script = ExtResource("7_r0ciy")
+
+[node name="y_zone" type="Area2D" parent="." unique_id=457476049]
+visible = false
+script = ExtResource("13_kgwq8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="y_zone" unique_id=981005448]
+position = Vector2(8806, -431.5)
+shape = SubResource("RectangleShape2D_nnsmj")
+
+[node name="PauseMenu" parent="." unique_id=576934438 node_paths=PackedStringArray("player") instance=ExtResource("14_nw5ve")]
+player = NodePath("../verity")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=967486145]
+position = Vector2(0, 10682)
+scale = Vector2(890.0254, 890.0254)
+sprite_frames = SubResource("SpriteFrames_e6q6n")
+
+[node name="Progress" type="CanvasLayer" parent="." unique_id=339402012 node_paths=PackedStringArray("player")]
+script = ExtResource("17_bmycd")
+player = NodePath("../verity")
+level_start_x = -790.0
+level_end_x = 15895.0
+
+[node name="CompleteScreen" parent="Progress" unique_id=642362803 instance=ExtResource("18_2s4sb")]
+visible = false
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Progress" unique_id=77530801]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -176.0
+offset_right = -112.0
+offset_bottom = 10.0
+grow_horizontal = 2
+scale = Vector2(5, 5)
+texture_under = ExtResource("19_o6oxc")
+texture_progress = SubResource("CompressedTexture2D_1ooyw")
+metadata/_edit_use_anchors_ = true
+
+[node name="PercentLabel" type="Label" parent="Progress" unique_id=854046277]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -33.0
+offset_top = 47.0
+offset_right = 7.0
+offset_bottom = 85.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("6_b85hj")
+theme_override_font_sizes/font_size = 26
+metadata/_edit_use_anchors_ = true
+
+[node name="BestLabel" type="Label" parent="Progress" unique_id=667476128]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 50.0
+offset_right = 20.0
+offset_bottom = 73.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("6_b85hj")
+theme_override_font_sizes/font_size = 26
+
+[node name="Objects" type="Node2D" parent="." unique_id=550121251]
+
+[node name="EditorUI" type="CanvasLayer" parent="." unique_id=1446339700]
+
+[node name="BackButton" type="Button" parent="EditorUI" unique_id=922370388]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+
+[connection signal="body_entered" from="followzone" to="followzone" method="_on_body_entered"]
+[connection signal="body_entered" from="y_zone" to="y_zone" method="_on_body_entered"]
+[connection signal="body_exited" from="y_zone" to="y_zone" method="_on_body_exited"]

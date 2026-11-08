@@ -13,17 +13,24 @@ var ghost = null
 @onready var save_button = $UI/TopBar/SaveButton
 @onready var load_button = $UI/TopBar/LoadButton
 @onready var back_button = $UI/TopBar/BackButton
+@onready var play_button = $UI/TopBar/PlayButton
 @onready var status_label = $UI/StatusLabel
 
 func _ready() -> void:
 	save_button.pressed.connect(save_level)
 	load_button.pressed.connect(load_level)
 	back_button.pressed.connect(go_back)
+	play_button.pressed.connect(play_level)
 	
 	build_palette()
 	select_object(selected_id)
 	say("Left click: place   Right click: delete   R: rotate   Arrows: move")
-
+	
+	LevelObjects.playtesting = false
+	if LevelObjects.editor_level_name != "":
+		name_edit.text = LevelObjects.editor_level_name
+		load_level()
+	
 func build_palette():
 	for i in LevelObjects.ids.size():
 		var button = Button.new()
@@ -173,6 +180,23 @@ func load_level():
 	for item in list:
 		place_object(Vector2i(int(item["x"]), int(item["y"])), item["id"], int(item["rot"]))
 	say("Loaded " + level_name)
+
+func play_level():
+	var has_finish = false
+	for cell in cells:
+		if cells[cell]["id"] == "finish":
+			has_finish = true
+	if has_finish == false:
+		say("Place a finish line first")
+		return
+	
+	save_level()
+	var level_name= get_level_name()
+	LevelObjects.play_level_name= level_name
+	LevelObjects.editor_level_name = level_name
+	LevelObjects.playtesting = true
+	SceneTransition.change_scene("res://scenes/custom_level.tscn")
+	
 
 func say(text):
 	status_label.text = text
