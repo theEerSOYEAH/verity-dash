@@ -182,13 +182,13 @@ anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -1139.0
 offset_top = 16.0
-offset_right = -868.0
+offset_right = -390.0
 offset_bottom = 65.0
 grow_horizontal = 0
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("3_m4ofw")
 theme_override_font_sizes/font_size = 42
-text = "POINTS :  1500"
+text = "POINTS :  1500 "
 vertical_alignment = 1
 
 [node name="BackButton" type="Button" parent="." unique_id=958349793]
