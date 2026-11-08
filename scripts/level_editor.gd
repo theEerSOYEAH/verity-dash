@@ -234,6 +234,7 @@ func setup_button(button):
 	button.button_up.connect(button_release.bind(button))
 
 func button_hover(button):
+	SoundManager.play(SoundManager.hover_sound, -12)
 	button.pivot_offset = button.size / 2
 	animate_button(button, Vector2(1.15, 1.15), Color(1.4, 1.4, 1.4), 0.18, Tween.TRANS_BACK)
 
@@ -241,6 +242,7 @@ func button_unhover(button):
 	animate_button(button, Vector2(1, 1), Color(1, 1, 1), 0.2, Tween.TRANS_QUAD)
 
 func button_press(button):
+	SoundManager.play(SoundManager.click_sound)
 	animate_button(button, Vector2(0.93, 0.93), Color(1.6, 1.6, 1.6), 0.08, Tween.TRANS_QUAD)
 
 func button_release(button):

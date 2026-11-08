@@ -77,6 +77,7 @@ func show_skin():
 		
 
 func on_action_pressed():
+	SoundManager.play(SoundManager.click_sound)
 	if changing == true:
 		return
 	
@@ -112,6 +113,7 @@ func go_right():
 func change_skin(direction):
 	if changing == true:
 		return
+	SoundManager.play(SoundManager.click_sound)
 	changing = true
 	
 	var new_index = current_index + direction
@@ -143,6 +145,7 @@ func change_skin(direction):
 	
 
 func hover_button(button):
+	SoundManager.play(SoundManager.hover_sound, -12)
 	var tween = create_tween()
 	tween.set_parallel(true)
 	tween.tween_property(button, "scale", Vector2(1.1, 1.1), 0.12).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
@@ -157,4 +160,5 @@ func unhover_button(button):
 
 
 func go_back():
+	SoundManager.play(SoundManager.back_sound)
 	SceneTransition.change_scene("res://scenes/main_menu.tscn")
