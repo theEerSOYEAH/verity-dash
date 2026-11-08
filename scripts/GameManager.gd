@@ -9,6 +9,7 @@ var points = 0
 var run_points = 0
 var owned_skins = ["verity"]
 var selected_skin = "verity"
+var practice_mode = false
 
 var skin_ids = ["verity", "falsity", "cruelty"]
 var skin_names = ["Verity", "Falsity", "Cruelty"]
@@ -24,6 +25,8 @@ func get_best():
 	return 0.0
 
 func set_best(value):
+	if practice_mode:
+		return
 	var old = get_best()
 	best_percents[current_level] = value
 	
