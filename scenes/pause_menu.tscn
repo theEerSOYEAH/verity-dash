@@ -151,7 +151,7 @@ offset_left = 204.0
 offset_top = 40.0
 offset_right = 504.0
 offset_bottom = 366.0
-theme_override_constants/separation = 16
+theme_override_constants/separation = -8
 
 [node name="ResumeButton" type="Button" parent="Window/Buttons" unique_id=740551936]
 layout_mode = 2
@@ -172,6 +172,17 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_88e76")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_71k7c")
 theme_override_styles/hover = SubResource("StyleBoxTexture_cmnsq")
 text = "RESTART"
+
+[node name="PracticeButton" type="Button" parent="Window/Buttons" unique_id=1567894614]
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_7l7mv")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxTexture_88e76")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_71k7c")
+theme_override_styles/hover = SubResource("StyleBoxTexture_cmnsq")
+text = "PRACTICE
+"
 
 [node name="MenuButton" type="Button" parent="Window/Buttons" unique_id=1675413390]
 layout_mode = 2

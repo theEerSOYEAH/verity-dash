@@ -16,22 +16,25 @@ var buttons = []
 @onready var restart_button = $Window/Buttons/RestartButton
 @onready var menu_button = $Window/Buttons/MenuButton
 @onready var countdown_label = $CountdownLabel
+@onready var practice_button = $Window/Buttons/PracticeButton
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	visible = false
 	
-	buttons = [resume_button, restart_button, menu_button]
+	buttons = [resume_button, practice_button, restart_button, menu_button]
 	
 	resume_button.pressed.connect(resume_game)
 	restart_button.pressed.connect(restart_level)
 	menu_button.pressed.connect(go_to_menu)
+	practice_button.pressed.connect(toggle_practice)
+	update_practice_text()
 	
 	for button in buttons:
 		button.mouse_entered.connect(hover_button.bind(button))
 		button.mouse_exited.connect(unhover_button.bind(button))
 		button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-
+		
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		if is_open:
@@ -102,10 +105,10 @@ func resume_game():
 	tween.tween_property(dim, "modulate:a", 0.0, 0.2)
 	tween.tween_method(set_blur, blur_strength, 0.0, 0.2)
 	await tween.finished
-	
+		
 	if countdown_on_resume == true:
 		await do_countdow()
-	
+		
 	visible = false
 	is_open = false
 	busy = false
@@ -138,10 +141,24 @@ func restart_level():
 	GameManager.attempts += 1
 	SceneTransition.change_scene(get_tree().current_scene.scene_file_path)
 
+func toggle_practice():
+	if busy:
+		return
+	busy = true
+	GameManager.practice_mode = not GameManager.practice_mode
+	SceneTransition.change_scene(get_tree().current_scene.scene_file_path)
+
+func update_practice_text():
+	if GameManager.practice_mode:
+		practice_button.text = "EXIT PRACTICE"
+	else:
+		practice_button.text = "PRACTICE"
+
 func go_to_menu():
 	if busy:
 		return
 	busy = true
+	GameManager.practice_mode = false
 	SceneTransition.change_scene(menu_scene_path)
 
 func hover_button(button):
@@ -157,6 +174,4 @@ func unhover_button(button):
 	var tween = create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property(button, "scale", Vector2(1, 1), 0.1)
-	
-	
 	
