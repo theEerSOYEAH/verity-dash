@@ -15,7 +15,15 @@ var paths = [
 	
 ]
 
+var use_picture = ["spike", "jump_pad", "portal_ship", "finish"]
 var offset_cache = {}
+
+var nudges = {
+	"spike": Vector2(0,-12),
+	"jump_pad": Vector2(0,25),
+	"portal_ship": Vector2(65,30),
+	"finish": Vector2(0,0)
+}
 
 func get_offset(id):
 	if id in offset_cache:
@@ -32,22 +40,53 @@ func calculate_offset(id):
 	node.position = Vector2.ZERO
 	node.rotation = 0
 	
-	var shape = find_shape(node)
-	var result = Vector2.ZERO
+	var target = null
+	var local_center= Vector2.ZERO
 	
-	if shape != null:
+	if id in use_picture:
+		target = find_picture(node)
+		if target != null:
+			local_center = picture_center(target)
+	if target == null:
+		target = find_shape(node)
+		
+	var result = Vector2.ZERO
+	if target != null:
 		var t = Transform2D.IDENTITY
-		var n = shape
-		while n != null:
+		var n = target
+		while  n != null:
 			t = n.transform * t
 			if n == node:
 				break
 			n = n.get_parent()
-		result = t.origin
+		result = t * local_center
+		
+	result -= nudges.get(id, Vector2.ZERO)
 	
 	node.free()
 	return result
 
+func find_picture(node):
+	if node is AnimatedSprite2D:
+		return node
+	for child in node.get_children():
+		var found = find_picture(child)
+		if found != null:
+			return found
+	return null
+	
+func picture_center(sprite):
+	var size = Vector2.ZERO
+	if sprite is AnimatedSprite2D:
+		if sprite.sprite_frames != null:
+			var names = sprite.sprite_frames.get_animation_names()
+			if names.size() > 0:
+				var tex = sprite.sprite_frames.get_frame_texture(names[0], 0)
+				if tex != null:
+					size = tex.get_size()
+	if sprite.centered:
+		return sprite.offset
+	return sprite.offset + size / 2
 
 func find_shape(node):
 	if node is CollisionShape2D:
