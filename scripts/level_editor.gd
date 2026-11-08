@@ -42,7 +42,7 @@ func _process(delta: float) -> void:
 		camera.position += move * speed * delta
 	
 	if ghost != null:
-		ghost.position = LevelObjects.cell_to_position(get_mouse_cell())
+		ghost.position = LevelObjects.place_position(selected_id, get_mouse_cell(), rotation_deg)
 
 	queue_redraw()
 
@@ -125,7 +125,7 @@ func place_object(cell, id, rot):
 	if node == null:
 		return
 	
-	node.position = LevelObjects.cell_to_position(cell)
+	node.position = LevelObjects.place_position(id, cell, rot)
 	node.rotation_degrees = rot
 	objects.add_child(node)
 	cells[cell] = {"id": id, "rot": rot, "node": node}

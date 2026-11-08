@@ -15,6 +15,25 @@ var paths = [
 	
 ]
 
+var offsets = [
+	Vector2(20,-17),
+	Vector2(0, 0),
+	Vector2(0, 0),
+	Vector2(0,0),
+	Vector2(0,0),
+	Vector2(0,0)
+]
+
+func get_offset(id):
+	var i = ids.find(id)
+	if i == -1 or i >= offsets.size():
+		return Vector2.ZERO
+	return offsets[i]
+
+func place_position(id, cell, rot_deg):
+	var center = cell_to_position(cell)
+	return center - get_offset(id).rotated(deg_to_rad(rot_deg))
+
 func make(id):
 	var i = ids.find(id)
 	if i == -1:
