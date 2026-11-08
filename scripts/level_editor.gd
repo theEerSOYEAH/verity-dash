@@ -143,6 +143,11 @@ func place_object(cell, id, rot):
 			return
 		remove_object(cell)
 	
+	if id == "finish":
+		for c in cells.keys():
+			if cells[c]["id"] == "finish":
+				remove_object(c)
+	
 	var node = LevelObjects.make(id)
 	if node == null:
 		return
