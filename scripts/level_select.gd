@@ -1,8 +1,8 @@
 extends Control
 
 var level_ids = ["level_1", "level_2", "level_3"]
-var level_names = ["Hey, Its Him!", "Coming Soon", "Coming Soon"]
-var level_paths = ["res://scenes/level1.tscn", "res://scenes/level_select.tscn", "res://scenes/level_select.tscn"]
+var level_names = ["Hey, Its Him!", "Coming Soon", "Custom"]
+var level_paths = ["res://scenes/level1.tscn", "res://scenes/level_select.tscn", "res://scenes/level_editor.tscn"]
 var level_textures = [
 	load("res://assets/basic black/button square hover.png"),
 	load("res://assets/basic black/button square idle.png"),
