@@ -69,8 +69,27 @@ var mode : Mode = Mode.ROLL
 var dead := false
 var finishe = false
 
+var over_ui = false
+
+func is_clicking():
+	if over_ui == false:
+		return Input.is_action_pressed("click")
+	return key_is_down()
+
+func key_is_down():
+	for e in InputMap.action_get_events("click"):
+		if e is InputEventKey:
+			if e.physical_keycode != 0 and Input.is_physical_key_pressed(e.physical_keycode):
+				return true
+			if e.keycode != 0 and Input.is_key_pressed(e.keycode):
+				return true
+	return false
+
 func _ready() -> void:
+	print("checkbox: ", is_practice_mode, "  GameManager", GameManager.practice_mode	)
 	add_to_group("player")
+	if GameManager.practice_mode:
+		is_practice_mode = true
 	var index = GameManager.skin_ids.find(GameManager.selected_skin)
 	if index != -1:
 		var frames = load(GameManager.skin_paths[index])
@@ -89,7 +108,9 @@ func _ready() -> void:
 	else:
 		if normal_music:
 			normal_music.play()
-
+	
+	if is_practice_mode:
+		add_child(load("res://scenes/practice_buttons.tscn").instantiate())
 
 func start_dash(angle_deg:float):
 	if mode != Mode.ROLL or dead or finishe:
@@ -176,7 +197,7 @@ func update_wave_trail():
 		return
 	
 	var head = global_position
-	var pressing = Input.is_action_pressed("click")
+	var pressing = is_clicking()
 	var on_surface = is_on_floor() or is_on_ceiling()
 	
 	if wave_corners.is_empty():
@@ -350,7 +371,7 @@ func _physics_process(delta: float) -> void:
 
 func _roll_physics(delta: float):
 	if dashing:
-		if Input.is_action_pressed("click"):
+		if is_clicking():
 			velocity.y = tan(deg_to_rad(dash_angle)) * SPEED
 			roll.rotation += ROLL_SPEED * delta
 			return
@@ -365,12 +386,12 @@ func _roll_physics(delta: float):
 
 	roll.rotation += ROLL_SPEED * delta
 
-	if Input.is_action_just_pressed("click"):
+	if is_clicking():
 		jump_buffer_timer = JUMP_BUFFER_TIME
 	else:
 		jump_buffer_timer -= delta
 
-	var wants_jump = jump_buffer_timer > 0.0 or Input.is_action_pressed("click")
+	var wants_jump = jump_buffer_timer > 0.0 or is_clicking()
 	if coyote_timer > 0.0 and wants_jump:
 		velocity.y = JUMP_VELOCITY
 		coyote_timer = 0.0
@@ -381,7 +402,7 @@ func _roll_physics(delta: float):
 	
 
 func _ship_physics(delta : float):
-	if Input.is_action_pressed("click"):
+	if is_clicking():
 		velocity.y += SHIP_THRUST * delta
 	else:
 		velocity.y += SHIP_GRAVITY * delta
@@ -394,7 +415,7 @@ func _ship_physics(delta : float):
 	
 
 func _wave_physics():
-	var pressing = Input.is_action_pressed("click")
+	var pressing = is_clicking()
 	var dir = -1.0 if pressing else 1.0
 	velocity.y = dir * SPEED * WAVE_Y_MULT
 
