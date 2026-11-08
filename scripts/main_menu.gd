@@ -1,19 +1,24 @@
 extends CanvasLayer
 
 @onready var play_button = $PlayButton
+@onready var shop_button = $ShopButton
 @onready var quit_button = $QuitButton
 
 
 func _ready() -> void:
 	play_button.mouse_entered.connect(hover_button.bind(play_button))
 	play_button.mouse_exited.connect(unhover_button.bind(play_button))
+	shop_button.mouse_entered.connect(hover_button.bind(shop_button))
+	shop_button.mouse_exited.connect(unhover_button.bind(shop_button))
 	quit_button.mouse_entered.connect(hover_button.bind(quit_button))
 	quit_button.mouse_exited.connect(unhover_button.bind(quit_button))
 	play_button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	shop_button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	quit_button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	
 	await get_tree().process_frame
 	play_button.pivot_offset = play_button.size / 2
+	shop_button.pivot_offset = shop_button.size / 2
 	quit_button.pivot_offset = quit_button.size / 2
 
 func hover_button(button):
@@ -34,6 +39,9 @@ func _on_play_button_pressed() -> void:
 	SoundManager.play(SoundManager.click_sound)
 	SceneTransition.change_scene("res://scenes/level_select.tscn")
 
+func _on_shop_button_pressed() -> void:
+	SoundManager.play(SoundManager.click_sound)
+	SceneTransition.change_scene("res://scenes/shop.tscn")
 
 func _on_quit_button_pressed() -> void:
 	SoundManager.play(SoundManager.click_sound)
