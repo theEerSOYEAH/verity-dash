@@ -1,9 +1,109 @@
 [gd_scene format=3 uid="uid://bgxmsbvsj20r8"]
 
 [ext_resource type="Script" uid="uid://b26rkbnfx88jc" path="res://scripts/level_editor.gd" id="1_ci1mn"]
+[ext_resource type="FontFile" uid="uid://tphvo0i11qn0" path="res://assets/LilitaOne-Regular.ttf" id="2_jjsnv"]
+[ext_resource type="Texture2D" uid="uid://1wumuw38fq43" path="res://assets/basic black/button wide idle.png" id="3_gbqyk"]
+[ext_resource type="Texture2D" uid="uid://bwtt4yya0ju0p" path="res://assets/basic black/button square idle.png" id="4_l4hv8"]
+[ext_resource type="Texture2D" uid="uid://curmp6qwwukrx" path="res://assets/basic black/button square clicked.png" id="5_2rodj"]
+[ext_resource type="Texture2D" uid="uid://da60um408go7s" path="res://assets/basic black/button square hover.png" id="6_4ohjn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_um4xh"]
+texture = ExtResource("3_gbqyk")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b4bh4"]
+texture = ExtResource("4_l4hv8")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iyn56"]
+texture = ExtResource("5_2rodj")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tqckg"]
+texture = ExtResource("6_4ohjn")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qq4i7"]
+texture = ExtResource("4_l4hv8")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3fkon"]
+texture = ExtResource("5_2rodj")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2rodj"]
+texture = ExtResource("6_4ohjn")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jjsnv"]
+texture = ExtResource("4_l4hv8")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gbqyk"]
+texture = ExtResource("5_2rodj")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l4hv8"]
+texture = ExtResource("6_4ohjn")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wkaig"]
+texture = ExtResource("4_l4hv8")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7x5es"]
+texture = ExtResource("5_2rodj")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a10cj"]
+texture = ExtResource("6_4ohjn")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
 
 [node name="LevelEditor" type="Node2D" unique_id=2006081042]
 script = ExtResource("1_ci1mn")
+normal_textures = ExtResource("4_l4hv8")
+hover_textures = ExtResource("6_4ohjn")
+pressed_textures = ExtResource("5_2rodj")
+button_font = ExtResource("2_jjsnv")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1858469621]
 
@@ -23,28 +123,63 @@ grow_vertical = 2
 [node name="TopBar" type="HBoxContainer" parent="UI" unique_id=2104971522]
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 31.0
+offset_right = -6.0
+offset_bottom = 47.0
 grow_horizontal = 2
 
 [node name="NameEdit" type="LineEdit" parent="UI/TopBar" unique_id=2070329213]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_jjsnv")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxTexture_um4xh")
 placeholder_text = "LEVEL NAME"
+alignment = 1
 
 [node name="SaveButton" type="Button" parent="UI/TopBar" unique_id=421486447]
 layout_mode = 2
 focus_mode = 0
-text = "SAVE"
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("2_jjsnv")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxTexture_b4bh4")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_iyn56")
+theme_override_styles/hover = SubResource("StyleBoxTexture_tqckg")
+text = "  SAVE  "
 
 [node name="LoadButton" type="Button" parent="UI/TopBar" unique_id=1606979423]
 layout_mode = 2
 focus_mode = 0
-text = "LOAD"
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("2_jjsnv")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxTexture_qq4i7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_3fkon")
+theme_override_styles/hover = SubResource("StyleBoxTexture_2rodj")
+text = "  LOAD  "
+
+[node name="PlayButton" type="Button" parent="UI/TopBar" unique_id=299765191]
+layout_mode = 2
+focus_mode = 0
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("2_jjsnv")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxTexture_jjsnv")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_gbqyk")
+theme_override_styles/hover = SubResource("StyleBoxTexture_l4hv8")
+text = "  PLAY  "
 
 [node name="BackButton" type="Button" parent="UI/TopBar" unique_id=1581547449]
 layout_mode = 2
 focus_mode = 0
-text = "BACK"
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("2_jjsnv")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxTexture_wkaig")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7x5es")
+theme_override_styles/hover = SubResource("StyleBoxTexture_a10cj")
+text = "  BACK  "
 
 [node name="StatusLabel" type="Label" parent="UI" unique_id=1784681224]
 anchors_preset = 2
@@ -53,3 +188,6 @@ anchor_bottom = 1.0
 offset_top = -23.0
 offset_right = 40.0
 grow_vertical = 0
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_jjsnv")
+theme_override_font_sizes/font_size = 24

@@ -2,6 +2,13 @@ extends Node2D
 
 var cells = {}
 
+@export var normal_textures: Texture2D
+@export var hover_textures: Texture2D
+@export var pressed_textures: Texture2D
+@export var button_font: Font
+@export var button_font_size = 20
+@export var button_outline_size = 4
+
 var selected_id = "block"
 var rotation_deg = 0
 var ghost = null
@@ -15,6 +22,8 @@ var ghost = null
 @onready var back_button = $UI/TopBar/BackButton
 @onready var play_button = $UI/TopBar/PlayButton
 @onready var status_label = $UI/StatusLabel
+
+var button_tweens = {}
 
 func _ready() -> void:
 	save_button.pressed.connect(save_level)
@@ -31,6 +40,9 @@ func _ready() -> void:
 		name_edit.text = LevelObjects.editor_level_name
 		load_level()
 	
+	for button in [save_button, load_button, play_button, back_button]:
+		setup_button(button)
+		
 func build_palette():
 	for i in LevelObjects.ids.size():
 		var button = Button.new()
@@ -38,6 +50,8 @@ func build_palette():
 		button.focus_mode = Control.FOCUS_NONE
 		button.pressed.connect(select_object.bind(LevelObjects.ids[i]))
 		palette.add_child(button)
+		style_button(button)
+		setup_button(button)
 		
 
 func _process(delta: float) -> void:
@@ -69,6 +83,7 @@ func _draw() -> void:
 		y += g
 	
 	draw_line(Vector2(0, top_left.y), Vector2(0, top_left.y + view.y), Color(0.3, 1, 0.3, .6), 3)
+	draw_line(Vector2(top_left.x, 0), Vector2(top_left.x + view.x, 0), Color(0.3, 1, 0.3, 0.6), 3)
 	
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -203,3 +218,70 @@ func say(text):
 	
 func go_back():
 	SceneTransition.change_scene("res://scenes/level_select.tscn")
+
+func setup_button(button):
+	button.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+	
+	button.z_index = 1
+	button.mouse_entered.connect(button_hover.bind(button))
+	button.mouse_exited.connect(button_unhover.bind(button))
+	button.button_down.connect(button_press.bind(button))
+	button.button_up.connect(button_release.bind(button))
+
+func button_hover(button):
+	button.pivot_offset = button.size / 2
+	animate_button(button, Vector2(1.15, 1.15), Color(1.4, 1.4, 1.4), 0.18, Tween.TRANS_BACK)
+
+func button_unhover(button):
+	animate_button(button, Vector2(1, 1), Color(1, 1, 1), 0.2, Tween.TRANS_QUAD)
+
+func button_press(button):
+	animate_button(button, Vector2(0.93, 0.93), Color(1.6, 1.6, 1.6), 0.08, Tween.TRANS_QUAD)
+
+func button_release(button):
+	if button.is_hovered():
+		animate_button(button, Vector2(1.15, 1.15), Color(1.4, 1.4, 1.4), 0.15, Tween.TRANS_BACK)
+
+func animate_button(button, target_scale, target_color, time, trans):
+	var old = button_tweens.get(button)
+	if old != null and old.is_valid():
+		old.kill()
+	
+	var tween = create_tween()
+	button_tweens[button] = tween
+	tween.set_parallel(true)
+	tween.set_trans(trans)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(button, "scale", target_scale, time)
+	tween.tween_property(button, "modulate", target_color, time)
+
+func style_button(button):
+	button.add_theme_stylebox_override("normal", make_style(normal_textures))
+	button.add_theme_stylebox_override("hover", make_style(hover_textures))
+	button.add_theme_stylebox_override("pressed", make_style(pressed_textures))
+	
+	button.custom_minimum_size = Vector2(120, 40)
+	
+	if button_font != null:
+		button.add_theme_font_override("font", button_font)
+	button.add_theme_font_size_override("font_size", button_font_size)
+	
+	button.add_theme_constant_override("outline_size", button_outline_size)
+	
+	button.add_theme_color_override("font_color", Color.WHITE)
+	button.add_theme_color_override("font_hover_color", Color(1.4, 1.4, 1.4))
+	button.add_theme_color_override("font_pressed_color", Color(0.8, 0.8, 0.8))
+	button.add_theme_color_override("font_hover_pressed_color", Color(0.8, 0.8, 0.8))
+	button.add_theme_color_override("font_focus_color", Color.WHITE)
+	
+func  make_style(texture):
+	var style = StyleBoxTexture.new()
+	style.texture = texture
+	style.texture_margin_left = 24
+	style.texture_margin_right = 24
+	style.texture_margin_right = 24
+	style.texture_margin_bottom = 24
+	style.texture_margin_top = 24
+	style.content_margin_left = 12
+	style.content_margin_right = 12
+	return style
