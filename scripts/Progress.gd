@@ -20,8 +20,15 @@ func _ready() -> void:
 	percent_label.text = "0%"
 	best_label.text = "Best: " + str(int(GameManager.get_best())) + "%"
 	
+	await get_tree().process_frame
+	var finish = get_tree().get_first_node_in_group("finish_line")
+	if finish != null:
+		level_end_x = finish.global_position.x
 func _process(delta: float) -> void:
 	if level_finished == true:
+		return
+	
+	if level_end_x <= level_start_x:
 		return
 	
 	var player_x = player.global_position.x
