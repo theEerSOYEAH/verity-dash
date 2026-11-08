@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c63wrk4es4vx4"]
+
+[ext_resource type="Script" uid="uid://7a6rshexbv4r" path="res://scripts/finish_line.gd" id="1_ojfi3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvkml"]
+size = Vector2(16, 1453)
+
+[node name="FinishLine" type="Area2D" unique_id=117101793]
+script = ExtResource("1_ojfi3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=817155719]
+shape = SubResource("RectangleShape2D_jvkml")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1759985996]
+shape = SubResource("RectangleShape2D_jvkml")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1967595642]
+emitting = false
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=677651469]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

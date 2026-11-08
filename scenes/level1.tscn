@@ -13,10 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://bpfhumupkfvlq" path="res://scenes/shipportal.tscn" id="11_u3awl"]
 [ext_resource type="Script" uid="uid://dhi1rubv8e8v4" path="res://scenes/y_zone.gd" id="12_2ku1j"]
 [ext_resource type="PackedScene" uid="uid://cj8viiyqillbm" path="res://scenes/pause_menu.tscn" id="13_f31uk"]
+[ext_resource type="PackedScene" uid="uid://c63wrk4es4vx4" path="res://scenes/finish_line.tscn" id="15_3w4mx"]
 [ext_resource type="FontFile" uid="uid://tphvo0i11qn0" path="res://assets/LilitaOne-Regular.ttf" id="17_3w4mx"]
 [ext_resource type="Script" uid="uid://b41g6ohts0sxy" path="res://scripts/Progress.gd" id="17_jvkml"]
 [ext_resource type="PackedScene" uid="uid://cmfupf6ht7voe" path="res://scenes/complete_screen.tscn" id="18_3w4mx"]
-[ext_resource type="Script" uid="uid://7a6rshexbv4r" path="res://scripts/finish_line.gd" id="18_mvsps"]
 [ext_resource type="Texture2D" uid="uid://3hgyrqmrxs8g" path="res://assets/869527780_1666620991570876_2337291329744437538_n-removebg-preview.png" id="19_jvkml"]
 [ext_resource type="Texture2D" uid="uid://bh8tikenhhes2" path="res://assets/healthbarUnder.png" id="19_u068y"]
 [ext_resource type="PackedScene" uid="uid://vftyuca7frrt" path="res://scenes/roll_portal.tscn" id="20_3w4mx"]
@@ -29,9 +29,6 @@ size = Vector2(44, 931)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nnsmj"]
 size = Vector2(19694, 509)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvkml"]
-size = Vector2(16, 1453)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3w4mx"]
 atlas = ExtResource("19_jvkml")
@@ -7165,21 +7162,8 @@ shape = SubResource("RectangleShape2D_nnsmj")
 [node name="PauseMenu" parent="." unique_id=576934438 node_paths=PackedStringArray("player") instance=ExtResource("13_f31uk")]
 player = NodePath("../verity")
 
-[node name="FinishLine" type="Area2D" parent="." unique_id=1077743337]
+[node name="FinishLine" parent="." unique_id=117101793 instance=ExtResource("15_3w4mx")]
 position = Vector2(15895, -325)
-script = ExtResource("18_mvsps")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FinishLine" unique_id=1484302754]
-shape = SubResource("RectangleShape2D_jvkml")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="FinishLine" unique_id=710493861]
-shape = SubResource("RectangleShape2D_jvkml")
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="FinishLine" unique_id=868527938]
-emitting = false
-one_shot = true
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="FinishLine" unique_id=951849810]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=967486145]
 position = Vector2(0, 10682)
@@ -7281,4 +7265,3 @@ position = Vector2(11148, -146)
 [connection signal="body_entered" from="followzone" to="followzone" method="_on_body_entered"]
 [connection signal="body_entered" from="y_zone" to="y_zone" method="_on_body_entered"]
 [connection signal="body_exited" from="y_zone" to="y_zone" method="_on_body_exited"]
-[connection signal="body_entered" from="FinishLine" to="FinishLine" method="_on_body_entered"]
