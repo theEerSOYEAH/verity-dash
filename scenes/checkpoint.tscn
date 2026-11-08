@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://btfrvwgk1rsh7"]
+
+[ext_resource type="Texture2D" uid="uid://degpnvlbkelqb" path="res://assets/image-removebg-preview.png" id="1_yyywg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywqth"]
+atlas = ExtResource("1_yyywg")
+region = Rect2(0, 0, 300, 300)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h621j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywqth")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="checkpoint" type="Node2D" unique_id=52297614]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=443230100]
+position = Vector2(5.9604645e-08, 1.4210855e-14)
+scale = Vector2(0.24999999, 0.24999999)
+sprite_frames = SubResource("SpriteFrames_h621j")
