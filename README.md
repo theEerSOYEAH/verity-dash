@@ -13,7 +13,7 @@ You can play it on itch.io here: https://mubixd.itch.io/verity-dash
 
 ## About
 
-You get to control a verity that cant stop moving forward. Try to beat the levels (currently there is only one level) without dying because if you do then well... you need to start over. You can also control the verity in a ship mode!!! And also very cool stuff like jumpads and jump orbs
+You get to control a verity that cant stop moving forward. Try to beat the levels without dying because if you do then well... you need to start over. You can also control the verity in a ship mode!!! And also very cool stuff like jumpads, dash orbs, jump orbs and very cool skins
 
 
 ## How to Play
@@ -36,8 +36,21 @@ You get to control a verity that cant stop moving forward. Try to beat the level
 
 * jump orbs also launches you into the air but only when you jump on them
 
+* dash orbs hold them to keep going forward whilst flying
+
 * portals so you could change your mode
 
+## Map Editor
+
+We added A NEW MAP EDITOR!!! you make the map and then you play it!!!! so coool ik but seriously it is go try it out (it took aloooot of time to make)
+
+## Shop
+
+A place where you can exchange your points that you earn for some cool skins currently there is only cruelty tho
+
+## Points
+
+Points are the game's currenccy you earn them buy getting high scores for each percentage you get 1 point!!!
 
 ## Progress Bar
 
@@ -46,18 +59,24 @@ At the top of the screen theres a bar that shows how far you are in the level as
 
 ## Level Complete Screen
 
-After you finish a level you get a very cool fade in animation you will see how many attempts it took you to beat the level and you will have 2 choices, either restart the level or go back to the main menu
+After you finish a level you get a very cool fade in animation you will see how many attempts it took you to beat the level and you will have 3 choices now you can restart the level, play with practie mode or even go back to the main menu
 
+## Practice Mode
+
+We made a practice mode!!!!!!! Click e or the bed button to spawn beds (Checkpoints) and click q or the anti bed button to remove the latest bed
 
 ## Level Select
 
-You slide between levels like in Geometry Dash. The background changes for every level and the card shows the name of the level and your best percent (even tho there is only 1 level currently).
+You slide between levels with very awesome animations and also the background changes for every level and the card shows the name of the level and your best percent
 
 
 ## Pause Menu
 
-Press Esc and the game blurs and a window pops in with resume, restart and menu buttons. When you resume it does a 3, 2, 1 countdown first so you arent instantly thrown back into the level.
+Press Esc and the game blurs and a window pops in with resume, restart and menu buttons when you resume it does a countdown first so you arent instantly thrown back into the level
 
+## Backgrounds
+
+We added backgrounds so levels dont look boring. We made it so it looks like its following you whilst also having the ability to change color
 
 ## Saving
 
@@ -78,3 +97,7 @@ Godot 4
 ## Have Suggestions or need Help?
 
 If you have suggestions or need help then dm me on slack @mubixd69 be happy to help you and also this isnt the finished game we are planning on working on it later
+
+## Disclaimer
+
+Ok so i have a few thins to talk about first of all our first version of the game had usage of ai (minor ai writing) this time we didint write anything with ai because we actually learn from our mistake and secondly the commits for TheEERSOYEAH might look off because they are. Like i dont know what happened sometime i pushed my commits and boom all of his commits were gone so he had to commit everything back 
