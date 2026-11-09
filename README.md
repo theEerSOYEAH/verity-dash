@@ -47,7 +47,7 @@ You get to control a verity that cant stop moving forward. Try to beat the level
 
 ## Map Editor
 
-We added A NEW MAP EDITOR!!! you make the map and then you play it!!!! so coool ik but seriously it is go try it out (it took aloooot of time to make)
+We added A NEW MAP EDITOR!!! you make the map and then you play it!!!! Go to page 3 on the map editor to go to the map editor!!! so coool ik but seriously it is go try it out (it took aloooot of time to make)
 
 ## Shop
 
@@ -86,11 +86,6 @@ We added backgrounds so levels dont look boring. We made it so it looks like its
 ## Saving
 
 If you accidently leave the game then dont worry because your best progress is saved for each level!!!
-
-
-## Tools Used
-
-Godot 4 
 
 ## Makers of the game
 
