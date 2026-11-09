@@ -9,6 +9,7 @@ A 2D game that is heavily inspired by Geometry Dash. Your verity keeps moving fo
 
 # Where to play?
 You can play it on itch.io here: https://mubixd.itch.io/verity-dash
+
 Or also here for the second version: https://mubixd.itch.io/verity-dash-the-second
 
 
