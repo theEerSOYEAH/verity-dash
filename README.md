@@ -1,6 +1,9 @@
 # Verity Dash
 
-<img width="1366" height="768" alt="7_1" src="https://github.com/user-attachments/assets/b7ce8c2d-21be-4385-9f0d-2c7230119192" /> <img width="1364" height="768" alt="7_2" src="https://github.com/user-attachments/assets/da3a2593-e06f-4ef6-9a67-5a322ce8290b" /> <img width="1366" height="768" alt="7_3" src="https://github.com/user-attachments/assets/13f15217-7661-4a0b-be10-50acd169db4a" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8b55efdc-c267-49e8-8fda-44629984823f" />
+ <img width="1364" height="768" alt="7_2" src="https://github.com/user-attachments/assets/da3a2593-e06f-4ef6-9a67-5a322ce8290b" /> <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/4d463931-0e26-4ebb-b9dd-f2628f7b2f2d" />
+<img width="1366" height="768" alt="7_3" src="https://github.com/user-attachments/assets/13f15217-7661-4a0b-be10-50acd169db4a" /> <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/2e681402-be4e-40a3-b8e7-e5879eb154cd" />
+
 
 
 
